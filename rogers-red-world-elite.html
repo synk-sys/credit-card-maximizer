@@ -76,6 +76,10 @@ footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:v
 .switch label{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:600}
 .switch select{font:500 14px/1.3 Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:240px;max-width:100%;box-shadow:var(--shadow);cursor:pointer}
 @media(min-width:1420px){.switch{position:fixed;top:24px;right:24px;z-index:10;padding:0}}
+.hero{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.6fr 1fr}}
+.hero img{display:block;width:100%;max-width:200px;height:auto;margin:0 auto;filter:drop-shadow(0 18px 28px rgba(26,43,60,.28))}
+@media(min-width:760px){.hero img{max-width:230px}}
 </style>
 </head>
 <body>
@@ -86,8 +90,13 @@ footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:v
 </select></label></div>
 <script>addEventListener('pageshow',function(){var s=document.getElementById('cardsel');s.value=s.querySelector('[selected]').value})</script>
 <header>
+  <div class="hero">
+  <div>
   <h1>Rogers Red World Elite® Mastercard Maximizer</h1>
   <p class="lede">A no-fee card that is changing on <b>18 November 2026</b>. Rogers bills jump to 5% cash back, but the 1.5× redemption bonus, trip cancellation cover and Roam Like Home days all go away. Here is what to do before the switch, how the new earn rates work, and a calculator that shows whether the new rules leave you better or worse off.</p>
+  </div>
+  <img src="rogers-red-world-elite-card.png" alt="The Rogers Red World Elite Mastercard" width="281" height="425">
+  </div>
 </header>
 
 <nav>
