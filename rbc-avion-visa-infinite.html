@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>RBC Avion Visa Infinite Maximizer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FAF6EE;--card:#FFFFFF;--fg:#1A2B3C;--mut:#5B6877;--line:#E4DCCB;--accent:#005DAA;--accent-fg:#fff;--ok:#1E7A4C;--warn:#A85F00;--bad:#B3261E;--chip:#EFE8D8;--shadow:0 1px 2px rgba(26,43,60,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#6FB6FF;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#6FB6FF;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1}
+h2{font-size:clamp(22px,4vw,28px);margin-bottom:6px}
+h3{font-size:18px}
+header{padding:36px 0 20px}
+.lede{color:var(--mut);max-width:62ch;margin:12px 0 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{white-space:nowrap;font-size:13px;font-weight:500;color:var(--fg);text-decoration:none;background:var(--chip);padding:6px 12px;border-radius:99px}
+section{padding-top:36px;scroll-margin-top:56px}
+.sub{color:var(--mut);margin:0 0 16px;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.callout{background:var(--card);border-radius:8px;padding:12px 14px;margin:14px 0;border:1px solid var(--line);border-left:4px solid var(--warn)}
+.callout b{color:var(--warn)}
+.callout.ok{border-left-color:var(--ok)}.callout.ok b{color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}.callout.bad b{color:var(--bad)}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .l{min-width:0;flex:1 1 200px}
+.row .l small{display:block;color:var(--mut);font-size:13px}
+label.t{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex:none}
+input[type=number],select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:110px}
+input[type=range]{accent-color:var(--accent);width:150px}
+.big{font-family:Fraunces,serif;font-size:clamp(30px,7vw,46px);line-height:1}
+.res{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:14px}
+.res .card .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.res .card small{display:block;color:var(--mut);font-size:13px;margin-top:6px}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px}
+summary{cursor:pointer;padding:12px 14px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary .tx{flex:1;min-width:0}
+summary .tx b{display:block}
+summary .tx span{color:var(--mut);font-size:14px}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+.body{padding:0 14px 14px 44px}
+.body ol,.body ul{margin:6px 0;padding-left:20px}
+.body li{margin:4px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--fg);margin-right:4px}
+.tag.hot{background:var(--warn);color:#fff}
+.gotcha{margin-top:8px;font-size:14px;color:var(--mut)}
+.gotcha b{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog{height:8px;background:var(--chip);border-radius:99px;overflow:hidden;margin-top:6px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+a{color:var(--accent)}
+ul.plain{padding-left:18px;margin:8px 0 0}
+ul.plain li{margin:4px 0}
+.src li{font-size:14px;margin:4px 0}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.switch{display:flex;justify-content:flex-end;padding-top:14px}
+.switch label{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.switch select{font:500 14px/1.3 Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:240px;max-width:100%;box-shadow:var(--shadow);cursor:pointer}
+@media(min-width:1420px){.switch{position:fixed;top:24px;right:24px;z-index:10;padding:0}}
+.hero{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.4fr 1fr}}
+.hero img{display:block;width:100%;max-width:300px;height:auto;margin:0 auto;border-radius:12px;filter:drop-shadow(0 18px 28px rgba(26,43,60,.28))}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="switch"><label for="cardsel">Switch card<select id="cardsel" onchange="location.href=this.value">
+  <option value="index.html">Amex Platinum (Canada)</option>
+  <option value="rogers-red-world-elite.html">Rogers Red World Elite Mastercard</option>
+  <option value="rbc-avion-visa-infinite.html" selected>RBC Avion Visa Infinite</option>
+</select></label></div>
+<script>addEventListener('pageshow',function(){var s=document.getElementById('cardsel');s.value=s.querySelector('[selected]').value})</script>
+<header>
+  <div class="hero">
+  <div>
+  <h1>RBC Avion® Visa Infinite‡ Maximizer</h1>
+  <p class="lede">A $120 travel card that only earns 1 point per dollar, so how you <i>redeem</i> decides whether it's worth keeping. Here's how to use the fixed-points flight chart, the linked partner perks most holders forget, the insurance and its limits, and a calculator that compares the card with a plain no-fee 1% card.</p>
+  </div>
+  <img src="rbc-avion-visa-infinite-card.png" alt="The RBC Avion Visa Infinite card" width="273" height="173">
+  </div>
+</header>
+
+<nav>
+  <a href="#act">Checklist</a><a href="#earn">Earning</a><a href="#grid">Flight chart</a><a href="#convert">Transfers</a><a href="#perks">Linked perks</a><a href="#ins">Insurance</a><a href="#fees">Fees</a><a href="#calc">Calculator</a>
+</nav>
+
+<section id="act">
+  <h2>1. Action checklist</h2>
+  <p class="sub">Ordered by deadline, then by how much each step is worth. Ticks are saved in this browser only.</p>
+  <div class="card" style="margin-bottom:14px"><b id="p_txt">0 of 0 done</b><div class="prog"><i id="p_bar"></i></div></div>
+  <div id="list"></div>
+</section>
+
+<section id="earn">
+  <h2>2. How you earn</h2>
+  <div class="card tbl"><table>
+    <tr><th>Purchase</th><th>Avion points per $1</th><th>Notes</th></tr>
+    <tr><td>Travel</td><td class="n"><b>1.25</b></td><td>Merchants Visa codes as "travel" (airlines, hotels, car rentals, travel agencies). Restaurants and transit usually don't count.</td></tr>
+    <tr><td>Petro-Canada, with Petro-Points linked</td><td class="n">1.2</td><td>20% bonus Avion points, plus 3¢/L off and 20% more Petro-Points. The bonus can take 90 days to post, and authorized users don't get it.</td></tr>
+    <tr><td>Everything else</td><td class="n">1</td><td>Includes groceries, dining and bills you set up as pre-authorized payments.</td></tr>
+    <tr><td>No points</td><td class="n">0</td><td>Cash advances, balance transfers, cash-like transactions, bill payments you push from online banking, interest and fees.</td></tr>
+  </table></div>
+  <div class="callout"><b>The weak spot.</b> One point per dollar is low for a $120 card. The card makes sense only if you redeem through the flight chart below at close to 2¢ a point. If you redeem at 1¢ (100 points = $1), a no-fee cash back card will usually beat it.</div>
+  <p class="gotcha"><b>Points don't expire</b> while your account is open. They're cancelled 12 months after you close the card, so redeem or transfer them before you cancel.</p>
+</section>
+
+<section id="grid">
+  <h2>3. The fixed-points flight chart</h2>
+  <p class="sub">Avion's Air Travel Redemption Schedule. Every round-trip economy flight in a zone costs the same number of points, up to a maximum ticket price (before taxes and fees). Any airline, any date, no blackouts. If the ticket costs more than the maximum, you pay the difference with your card or with more points.</p>
+  <div class="card tbl"><table>
+    <tr><th>Zone</th><th>Points</th><th>Max ticket</th><th>Best value</th></tr>
+    <tr><td>Quick getaway: within or to a neighbouring province, territory or US state</td><td class="n">15,000</td><td class="n">$350</td><td class="n pos">2.33¢</td></tr>
+    <tr><td>North America: anywhere in Canada or the US except Hawaii and Alaska</td><td class="n">35,000</td><td class="n">$750</td><td class="n pos">2.14¢</td></tr>
+    <tr><td>Holiday: Western Canada/US to Mexico, Hawaii or Alaska; Eastern Canada to Bermuda, Central America or the Caribbean</td><td class="n">45,000</td><td class="n">$900</td><td class="n pos">2.00¢</td></tr>
+    <tr><td>Vacation: Eastern Canada/US to Mexico, Hawaii or Alaska; Western Canada to Bermuda, Central America or the Caribbean</td><td class="n">55,000</td><td class="n">$1,100</td><td class="n pos">2.00¢</td></tr>
+    <tr><td>Europe, from a major Canadian or US gateway</td><td class="n">65,000</td><td class="n">$1,300</td><td class="n pos">2.00¢</td></tr>
+    <tr><td>Asia, Australia, New Zealand, South Pacific, Middle East, Africa, South America</td><td class="n">100,000</td><td class="n">$2,000</td><td class="n pos">2.00¢</td></tr>
+  </table></div>
+  <div class="callout ok"><b>How to win with the chart.</b> Book when the base fare (before taxes) is close to the maximum. A $700 Toronto–Vancouver fare for 35,000 points is worth 2¢ a point. A $280 fare in the same zone is only 0.8¢, so pay that one with points at 100 = $1, or with cash. Short regional hops at peak times are often the best value of all.</div>
+  <p class="gotcha"><b>Business class</b> doesn't use the chart: it costs 100 points per $1. <b>Taxes and fees</b> are always extra, but you can pay them with points at 100 = $1.</p>
+</section>
+
+<section id="convert">
+  <h2>4. Converting to airline programs</h2>
+  <p class="sub">The Avion Visa Infinite comes with Avion Elite status, which unlocks point transfers. Transfers are one-way and final, take up to 4 weeks, and the airline account must be in the same name as the card.</p>
+  <div class="card tbl"><table>
+    <tr><th>Program</th><th>Ratio (Avion : partner)</th><th>Best use</th></tr>
+    <tr><td>British Airways Avios</td><td class="n">1 : 1</td><td>Short non-stop flights on partners: Alaska, American, Aer Lingus, Iberia, Qatar. Watch for transfer bonuses.</td></tr>
+    <tr><td>Cathay Pacific Asia Miles</td><td class="n">1 : 1</td><td>Long-haul business class to Asia; oneworld awards.</td></tr>
+    <tr><td>American Airlines AAdvantage</td><td class="n">1 : 0.7</td><td>Off-peak partner awards. The weaker ratio hurts, so transfer only during a bonus.</td></tr>
+    <tr><td>WestJet Rewards</td><td class="n">1 : 1 (WestJet points)</td><td>WestJet flights and vacations. Worth about 1¢ each, so rarely better than the chart.</td></tr>
+  </table></div>
+  <div class="callout"><b>Transfer bonus (reported):</b> several travel blogs report a 30% Avion-to-Avios bonus running until 30 Nov 2026, so 10,000 Avion points become 13,000 Avios. Confirm it in the Avion Rewards app, and only transfer for a specific booking you've already found with seats available. Ratios in this table come from third-party guides, so check the live ratio before you convert.</div>
+</section>
+
+<section id="perks">
+  <h2>5. Linked perks most people forget</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Petro-Canada</h3><p style="margin:6px 0 0">Link your Petro-Points card: 3¢/L off at the pump, 20% more Petro-Points and 20% more Avion points. Linking can take 2 business days.</p></div>
+    <div class="card"><h3>DoorDash DashPass</h3><p style="margin:6px 0 0">12 months free: $0 delivery fees on orders of $15+ from eligible restaurants. It <b>auto-renews at full price</b> afterwards, so set a reminder to cancel.</p></div>
+    <div class="card"><h3>Rexall Be Well</h3><p style="margin:6px 0 0">Link your card and earn 50 Be Well points per $1 at Rexall, on top of your Avion points.</p></div>
+    <div class="card"><h3>Canadian Tire Triangle</h3><p style="margin:6px 0 0">3× Canadian Tire Money at Canadian Tire, Sport Chek, Mark's and more when you scan your linked Triangle card.</p></div>
+    <div class="card"><h3>Visa Infinite perks</h3><p style="margin:6px 0 0">Visa Infinite Luxury Hotel Collection (900+ hotels with upgrades and breakfast), the Dining Series, wine-country events, and discounts at Park'N Fly, Via Rail and Viator.</p></div>
+    <div class="card"><h3>GigSky data and Concierge</h3><p style="margin:6px 0 0">1 GB of free eSIM data for 15 days in 175+ countries, plus 20% off GigSky plans. Free 24/7 Visa Infinite Concierge: 1-888-853-4458.</p></div>
+  </div>
+  <p class="gotcha"><b>Not included:</b> no airport lounge access, and no fast-track security. Those come with the $399 Avion Visa Infinite Privilege.</p>
+</section>
+
+<section id="ins">
+  <h2>6. Insurance cheat sheet</h2>
+  <p class="sub">To be covered, pay the full trip, rental or purchase with the card, with Avion points, or a mix of both. Assistance line: 1-800-533-2778 (905-816-2581 collect from abroad).</p>
+  <div class="card tbl"><table>
+    <tr><th>Coverage</th><th>Limit</th><th>Catch</th></tr>
+    <tr><td>Emergency medical</td><td>Unlimited</td><td>Only the first <b>15 days</b> of a trip if you're under 65, or <b>3 days</b> at 65+. Call before treatment or you pay 20%.</td></tr>
+    <tr><td>Trip cancellation</td><td class="n">$1,500 per person, $5,000 per trip</td><td>13 covered reasons. Cancel by the next business day.</td></tr>
+    <tr><td>Trip interruption</td><td class="n">$5,000 per person, $25,000 per trip</td><td>Covers the unused part of the trip and an economy flight home.</td></tr>
+    <tr><td>Flight delay (4+ hours)</td><td class="n">$250/day, $500 per delay</td><td>Hotel and meals, for up to 48 hours.</td></tr>
+    <tr><td>Delayed or lost baggage</td><td class="n">$500/person, $2,500 total</td><td>Essentials bought after 4 hours, within 4 days.</td></tr>
+    <tr><td>Travel accident</td><td class="n">$500,000</td><td>Only on a common carrier (plane, train, bus, ferry).</td></tr>
+    <tr><td>Rental car collision/loss</td><td>Actual cash value</td><td>Decline the rental company's CDW. Up to 48 days. MSRP ≤ $65,000. No trucks, vans or exotic cars.</td></tr>
+    <tr><td>Hotel/motel burglary</td><td class="n">$2,500</td><td>Only with visible signs of forced entry.</td></tr>
+    <tr><td>Mobile device</td><td class="n">Up to $1,500</td><td>Loss, theft, accidental damage or breakdown. Check the certificate for the deductible.</td></tr>
+    <tr><td>Purchase security</td><td class="n">90 days, $50,000/yr</td><td>Excess over home insurance, which in practice means it pays your deductible.</td></tr>
+    <tr><td>Extended warranty</td><td>Doubles the warranty, +1 year max</td><td>Get approval before any repair.</td></tr>
+  </table></div>
+  <div class="callout"><b>Reality check:</b> 15 days of medical cover won't protect a three-week trip, and 3 days is almost nothing for travellers 65+. Buy top-up cover (Enrollment Centre: 1-800-565-3129) or a separate policy. Trip cancellation at $1,500 per person won't cover an expensive cruise or tour either.</div>
+  <p class="gotcha"><b>Source note:</b> the limits above come from RBC's published certificate of insurance (2016 edition) and RBC's product page (mobile device). Coverage may have changed since, so check the current certificate before you rely on it.</p>
+</section>
+
+<section id="fees">
+  <h2>7. Fees and rates</h2>
+  <div class="card tbl"><table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Annual fee</td><td class="n">$120 (rebated with an RBC VIP Banking account)</td></tr>
+    <tr><td>Additional card</td><td class="n">$50 each</td></tr>
+    <tr><td>Income requirement</td><td class="n">$60,000 personal or $100,000 household</td></tr>
+    <tr><td>Purchase interest</td><td class="n">20.99%</td></tr>
+    <tr><td>Cash advances</td><td class="n">22.99%</td></tr>
+    <tr><td>Foreign currency conversion</td><td class="n">2.5%</td></tr>
+  </table></div>
+  <p class="gotcha"><b>Foreign spending:</b> you earn 1–1.25 points but pay 2.5% in fees. Even at 2¢ a point, that's a loss of 0.5% or more. Use a no-FX-fee card outside Canada and keep the Avion for booking travel.</p>
+</section>
+
+<section id="calc">
+  <h2>8. Is it worth $120 to you?</h2>
+  <p class="sub">Enter your real yearly spending and how you'll actually redeem. The calculator compares the Avion with a no-fee card paying a flat 1% cash back.</p>
+  <div class="card">
+    <div class="row"><div class="l">Annual fee rebated<small>Through an RBC VIP Banking account, which has its own monthly fee</small></div><label class="t"><input type="checkbox" id="vip"> Yes</label></div>
+    <div class="row"><div class="l">Additional cards<small>$50 each</small></div><input type="number" id="addl" min="0" max="9" value="0" style="width:70px"></div>
+    <div class="row"><div class="l">Travel spend in CAD ($/yr)<small>1.25 points per $</small></div><input type="number" id="s_trav" min="0" value="4000"></div>
+    <div class="row"><div class="l">Petro-Canada fuel ($/yr), Petro-Points linked<small>1.2 points per $, plus 3¢/L off</small></div><input type="number" id="s_gas" min="0" value="2000"></div>
+    <div class="row"><div class="l">Litres of fuel a year<small>For the 3¢/L discount</small></div><input type="number" id="litres" min="0" value="1200"></div>
+    <div class="row"><div class="l">Foreign-currency spending ($/yr, in CAD)<small>1 point per $, 2.5% FX fee</small></div><input type="number" id="s_fx" min="0" value="0"></div>
+    <div class="row"><div class="l">Everything else ($/yr)<small>1 point per $</small></div><input type="number" id="s_other" min="0" value="20000"></div>
+    <div class="row"><div class="l">How you'll redeem (¢ per point)<small>1.0 = pay for any travel at 100 points = $1. About 2.0 = chart flights booked near the maximum fare.</small></div><div><input type="range" id="cpp" min="0.5" max="2.3" step="0.1" value="1.5"> <b id="o_cpp">1.5</b>¢</div></div>
+    <div class="row"><div class="l">DashPass you'd otherwise pay for ($/yr)<small>Free for 12 months. Default $0.</small></div>$<input type="number" id="v_dash" min="0" value="0" style="width:90px"></div>
+    <div class="row"><div class="l">Insurance you'd otherwise buy ($/yr)<small>Trip cancellation, rental car, mobile device. Default $0.</small></div>$<input type="number" id="v_ins" min="0" value="0" style="width:90px"></div>
+    <div class="row"><div class="l">Include the welcome offer?<small>70,000 points, one time (35,000 on approval, 20,000 after $5,000 in 6 months, 15,000 at your anniversary). Apply by 25 Nov 2026.</small></div><label class="t"><input type="checkbox" id="w_on"> Include</label></div>
+  </div>
+
+  <div class="res" aria-live="polite">
+    <div class="card"><div class="k">Net value per year</div><div class="big" id="r_net">–</div><small id="r_net_d"></small></div>
+    <div class="card"><div class="k">Points earned</div><div class="big" id="r_pts">–</div><small id="r_pts_d"></small></div>
+    <div class="card"><div class="k">vs a no-fee 1% card</div><div class="big" id="r_vs">–</div><small id="r_vs_d"></small></div>
+    <div class="card"><div class="k">Break-even redemption</div><div class="big" id="r_be">–</div><small>¢ per point needed to match the 1% card</small></div>
+  </div>
+  <div class="callout" id="verdict"></div>
+  <p class="gotcha"><b>How it's calculated:</b> net value = points × your redemption value + fuel discount + perks − annual fee − 2.5% FX fees. The 1% card is assumed to charge the same 2.5% FX fee. The welcome offer is one time only, so it makes the first year look much better than later years.</p>
+</section>
+
+<section id="note">
+  <div class="callout"><b>Verify before you act.</b> Offers, transfer ratios and insurance terms change, and some promotions are targeted. Check the live terms in RBC Online Banking and the Avion Rewards app.</div>
+  <h3 style="margin-top:20px">Sources</h3>
+  <ul class="src">
+    <li><a href="https://www.rbcroyalbank.com/credit-cards/travel/rbc-avion-visa-infinite.html" target="_blank" rel="noopener">RBC: RBC Avion Visa Infinite product page</a></li>
+    <li><a href="https://www.rbcroyalbank.com/credit-cards/travel/rbc-visa-infinite-avion/rbc-visa-infinite-avion-benefits-guide.pdf" target="_blank" rel="noopener">RBC: Avion Visa Infinite Benefits Guide (PDF)</a></li>
+    <li><a href="https://www.rbcroyalbank.com/credit-cards/travel/rbc-visa-infinite-avion/rbc-visa-avion-infinite-certificate-of-insurance.pdf" target="_blank" rel="noopener">RBC: Avion Visa Infinite Certificate of Insurance (PDF)</a></li>
+    <li><a href="https://milesopedia.com/en/guide/tutorials/how-to-transfer-points-rbc-avion-programs/" target="_blank" rel="noopener">Milesopedia: How to transfer Avion points</a></li>
+    <li><a href="https://princeoftravel.com/points-programs/rbc-avion/" target="_blank" rel="noopener">Prince of Travel: Guide to RBC Avion Rewards</a></li>
+    <li><a href="https://frugalflyer.ca/blog/rbc-avion-to-avios-limited-time-transfer-bonus/" target="_blank" rel="noopener">Frugal Flyer: Avion to Avios transfer bonus</a></li>
+  </ul>
+</section>
+
+<footer>Travel rich. Spend smart. · Independent guide, not affiliated with RBC Royal Bank or Visa. Not financial advice.</footer>
+</div>
+
+<script>
+//<calc>
+function calcAvion(i){
+  var fee=(i.vip?0:120)+50*(i.addl||0);
+  var spend=(i.trav||0)+(i.gas||0)+(i.fx||0)+(i.other||0);
+  var pts=(i.trav||0)*1.25+(i.gas||0)*1.2+(i.fx||0)+(i.other||0);
+  var bonus=i.welcome?70000:0;
+  var ptsVal=(pts+bonus)*(i.cpp||0)/100;
+  var fuel=(i.litres||0)*0.03;
+  var fxCost=(i.fx||0)*0.025;
+  var perks=(i.dash||0)+(i.ins||0);
+  var net=ptsVal+fuel+perks-fee-fxCost;
+  var bench=spend*0.01-fxCost;
+  var breakeven=(pts+bonus)>0?(bench+fee+fxCost-fuel-perks)/(pts+bonus)*100:0;
+  return {fee:fee,spend:spend,pts:pts,bonus:bonus,ptsVal:ptsVal,fuel:fuel,fxCost:fxCost,perks:perks,net:net,bench:bench,vs:net-bench,breakeven:Math.max(0,breakeven)};
+}
+//</calc>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var money=function(n){var s=Math.round(Math.abs(n)).toLocaleString('en-CA');return (n<0?'−$':'$')+s};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:0}
+function run(){
+  $('o_cpp').textContent=(+$('cpp').value).toFixed(1);
+  var r=calcAvion({vip:$('vip').checked,addl:num('addl'),trav:num('s_trav'),gas:num('s_gas'),litres:num('litres'),fx:num('s_fx'),other:num('s_other'),cpp:+$('cpp').value,dash:num('v_dash'),ins:num('v_ins'),welcome:$('w_on').checked});
+  $('r_net').textContent=money(r.net);$('r_net').className='big '+(r.net>=0?'pos':'neg');
+  $('r_net_d').textContent=money(r.ptsVal)+' points + '+money(r.fuel+r.perks)+' fuel & perks − '+money(r.fee)+' fee'+(r.fxCost?' − '+money(r.fxCost)+' FX':'');
+  $('r_pts').textContent=Math.round(r.pts+r.bonus).toLocaleString('en-CA');
+  $('r_pts_d').textContent=r.bonus?Math.round(r.pts).toLocaleString('en-CA')+' from spending + 70,000 welcome':'From spending, per year';
+  $('r_vs').textContent=(r.vs>=0?'+':'')+money(r.vs);$('r_vs').className='big '+(r.vs>=0?'pos':'neg');
+  $('r_vs_d').textContent='The 1% card would return '+money(r.bench);
+  $('r_be').textContent=r.breakeven.toFixed(2)+'¢';
+  var v=$('verdict'),msg,cls='callout';
+  if(r.vs>=1){cls+=' ok';msg='<b>The Avion wins by '+money(r.vs)+' a year.</b> That depends on redeeming at '+(+$('cpp').value).toFixed(1)+'¢ a point. If you fall back to 100 points = $1, you need at least '+r.breakeven.toFixed(2)+'¢ to stay ahead. Plan your redemptions around the flight chart.';}
+  else{cls+=' bad';msg='<b>A no-fee 1% card beats this by '+money(-r.vs)+' a year.</b> To come out ahead, you\'d need to redeem at about '+r.breakeven.toFixed(2)+'¢ a point, which means flights booked from the chart near the maximum fare. If you mostly redeem at 1¢, this card costs you money.';}
+  if($('w_on').checked)msg+=' <br><br>This includes the one-time 70,000-point welcome offer. Untick it to see a normal year.';
+  if(num('s_fx')>0)msg+=' <br><br>You\'re paying '+money(r.fxCost)+' in FX fees. A no-FX-fee card would save most of that.';
+  v.className=cls;v.innerHTML=msg;
+}
+document.querySelectorAll('#calc input').forEach(function(e){e.addEventListener('input',run);e.addEventListener('change',run)});
+
+var items=[
+{id:'a1',tag:'By 25 Nov',hot:1,t:'Apply before the welcome offer ends (new cardholders)',v:'Up to 70,000 points',s:['Apply by 25 November 2026.','35,000 points on approval.','20,000 more after you spend $5,000 in your first 6 months.','15,000 at your first anniversary, so you have to keep the card (and pay the fee) a year.'],g:'The annual fee is charged when the card is issued, whether or not you activate it. Only count the anniversary points if you\'ll keep the card for 12 months.'},
+{id:'a2',tag:'First 6 months',hot:1,t:'Hit $5,000 of spending on schedule',v:'20,000 points',s:['Divide $5,000 by 6: about $835 a month.','Move recurring bills to the card as pre-authorized payments: bills you pay from online banking earn nothing.','Time large purchases you were already planning to fall inside the window.'],g:'Cash advances, balance transfers and bill payments made from online banking don\'t count toward the $5,000 and don\'t earn points.'},
+{id:'a3',tag:'Day 1',t:'Link your Petro-Points card',v:'3¢/L off, +20% points',s:['Sign in to RBC Online Banking or the app and find the Petro-Canada offer.','Link your Petro-Points card.','Wait up to 2 business days before your next fill-up.'],g:'The 20% Avion bonus can take up to 90 days to post and doesn\'t apply to authorized users.'},
+{id:'a4',tag:'Day 1',t:'Activate free DashPass, and set a cancel reminder',v:'12 months of $0 delivery',s:['Add this card to your DoorDash account.','Tap "Activate Free DashPass".','Put a reminder in your calendar 11 months from today.'],g:'It renews automatically at the full price after 12 months. Only one DoorDash account per card, and DashPass bought through Apple Pay or Google Pay isn\'t eligible.'},
+{id:'a5',tag:'Day 1',t:'Link Rexall Be Well and Canadian Tire Triangle',v:'50 Be Well pts/$, 3× CT Money',s:['Link your Be Well card through RBC Online Banking.','Link your Triangle Rewards card for 3× Canadian Tire Money.','Scan the loyalty card and pay with this card every time.'],g:'Linking can take 2 business days. Be Well points aren\'t earned on taxes, tobacco, alcohol, gift cards or lottery tickets.'},
+{id:'a6',tag:'Weekly',t:'Load RBC Offers before you shop',v:'Bonus points and discounts',s:['Open RBC Offers in the app or online banking.','Load the offers that match spending you already planned.'],g:'Offers only work if loaded before you pay. Don\'t buy things just to trigger an offer.'},
+{id:'a7',tag:'Before booking',hot:1,t:'Check the flight chart before paying cash',v:'Up to 2.33¢ a point',s:['Look up the base fare before taxes.','Compare it with the zone\'s maximum: 15,000 for $350, 35,000 for $750, 65,000 for $1,300.','If the fare is close to the maximum, use the chart. If it\'s far below, pay cash or use points at 100 = $1.'],g:'Taxes and fees are always extra. Business class is redeemed at 100 points = $1, not through the chart.'},
+{id:'a8',tag:'By 30 Nov',t:'Consider the 30% Avios transfer bonus (only if you have a booking)',v:'10,000 Avion → 13,000 Avios',s:['Find an award seat on ba.com before you transfer.','Confirm the bonus in the Avion Rewards app.','Transfer at least 10,000 points to a BA account in the same name as your card.'],g:'Transfers are one-way and can take up to 4 weeks. Points sitting in Avios lose the flexibility of Avion.'},
+{id:'a9',tag:'Every trip',t:'Pay the whole trip with the card or Avion points',v:'Unlocks travel insurance',s:['Charge the full fare, hotel and rental to the Avion card, or pay with points and put the rest on the card.','Decline the rental company\'s CDW and check the car\'s MSRP is under $65,000.','Save the assistance number: 1-800-533-2778.'],g:'Trips paid with other cards, or partly with other airline points, may not be covered.'},
+{id:'a10',tag:'Long trips',t:'Buy top-up medical for trips past 15 days (3 days if 65+)',v:'Avoid a coverage gap',s:['Count the days, including the departure and return days.','Call the Enrollment Centre at 1-800-565-3129 for top-up cover, or buy a separate policy.'],g:'Coverage stops after day 15 (under 65) or day 3 (65+). If you travel longer without top-up, nothing is covered after that point.'},
+{id:'a11',tag:'Before you cancel',t:'Redeem or transfer your points first',v:'Don\'t lose your balance',s:['Use or move your points before you close the card.','Or switch to another Avion card so they stay in the same account.'],g:'Points are cancelled 12 months after you close the account.'}
+];
+var KEY='rbc_avion_vi_checks_v1';
+var saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+var list=$('list');
+items.forEach(function(it){
+  var d=document.createElement('details');
+  var steps=it.s.map(function(x){return '<li>'+x+'</li>'}).join('');
+  d.innerHTML='<summary><input type="checkbox" data-id="'+it.id+'" aria-label="Mark done: '+it.t+'"'+(saved[it.id]?' checked':'')+'><div class="tx"><b>'+it.t+'</b><span><span class="tag'+(it.hot?' hot':'')+'">'+it.tag+'</span>'+it.v+'</span></div></summary><div class="body"><ol>'+steps+'</ol><div class="gotcha"><b>Gotcha:</b> '+it.g+'</div></div>';
+  list.appendChild(d);
+});
+list.addEventListener('click',function(e){if(e.target.matches('input[type=checkbox]'))e.stopPropagation()});
+list.addEventListener('change',function(e){
+  var t=e.target;if(!t.dataset.id)return;
+  saved[t.dataset.id]=t.checked;
+  try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(x){}
+  prog();
+});
+function prog(){
+  var n=items.filter(function(i){return saved[i.id]}).length;
+  $('p_txt').textContent=n+' of '+items.length+' done';
+  $('p_bar').style.width=(n/items.length*100)+'%';
+}
+prog();run();
+})();
+</script>
+</body>
+</html>
