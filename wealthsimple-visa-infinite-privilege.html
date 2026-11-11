@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Wealthsimple Visa Infinite Privilege Maximizer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FAF6EE;--card:#FFFFFF;--fg:#1A2B3C;--mut:#5B6877;--line:#E4DCCB;--accent:#32302C;--accent-fg:#fff;--ok:#1E7A4C;--warn:#A85F00;--bad:#B3261E;--chip:#EFE8D8;--shadow:0 1px 2px rgba(26,43,60,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#E3DCCB;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#E3DCCB;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1}
+h2{font-size:clamp(22px,4vw,28px);margin-bottom:6px}
+h3{font-size:18px}
+header{padding:36px 0 20px}
+.lede{color:var(--mut);max-width:62ch;margin:12px 0 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{white-space:nowrap;font-size:13px;font-weight:500;color:var(--fg);text-decoration:none;background:var(--chip);padding:6px 12px;border-radius:99px}
+section{padding-top:36px;scroll-margin-top:56px}
+.sub{color:var(--mut);margin:0 0 16px;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.callout{background:var(--card);border-radius:8px;padding:12px 14px;margin:14px 0;border:1px solid var(--line);border-left:4px solid var(--warn)}
+.callout b{color:var(--warn)}
+.callout.ok{border-left-color:var(--ok)}.callout.ok b{color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}.callout.bad b{color:var(--bad)}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .l{min-width:0;flex:1 1 200px}
+.row .l small{display:block;color:var(--mut);font-size:13px}
+label.t{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex:none}
+input[type=number],select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:110px}
+input[type=range]{accent-color:var(--accent);width:150px}
+.big{font-family:Fraunces,serif;font-size:clamp(30px,7vw,46px);line-height:1}
+.res{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:14px}
+.res .card .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.res .card small{display:block;color:var(--mut);font-size:13px;margin-top:6px}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px}
+summary{cursor:pointer;padding:12px 14px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary .tx{flex:1;min-width:0}
+summary .tx b{display:block}
+summary .tx span{color:var(--mut);font-size:14px}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+.body{padding:0 14px 14px 44px}
+.body ol,.body ul{margin:6px 0;padding-left:20px}
+.body li{margin:4px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--fg);margin-right:4px}
+.tag.hot{background:var(--warn);color:#fff}
+.gotcha{margin-top:8px;font-size:14px;color:var(--mut)}
+.gotcha b{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog{height:8px;background:var(--chip);border-radius:99px;overflow:hidden;margin-top:6px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+a{color:var(--accent)}
+.src li{font-size:14px;margin:4px 0}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.switch{display:flex;justify-content:flex-end;padding-top:14px}
+.switch label{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.switch select{font:500 14px/1.3 Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:240px;max-width:100%;box-shadow:var(--shadow);cursor:pointer}
+@media(min-width:1420px){.switch{position:fixed;top:24px;right:24px;z-index:10;padding:0}}
+.hero{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.3fr 1fr}}
+.hero img{display:block;width:100%;max-width:360px;height:auto;margin:0 auto;filter:drop-shadow(0 18px 28px rgba(26,43,60,.22))}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="switch"><label for="cardsel">Switch card<select id="cardsel" onchange="location.href=this.value">
+  <option value="index.html">Amex Platinum (Canada)</option>
+  <option value="amex-cobalt.html">Amex Cobalt</option>
+  <option value="scotiabank-gold-amex.html">Scotiabank Gold Amex</option>
+  <option value="td-aeroplan-visa-infinite.html">TD Aeroplan Visa Infinite</option>
+  <option value="rogers-red-world-elite.html">Rogers Red World Elite Mastercard</option>
+  <option value="rbc-avion-visa-infinite.html">RBC Avion Visa Infinite</option>
+  <option value="wealthsimple-visa-infinite-privilege.html" selected>Wealthsimple Visa Infinite Privilege</option>
+</select></label></div>
+<script>addEventListener('pageshow',function(){var s=document.getElementById('cardsel');s.value=s.querySelector('[selected]').value})</script>
+<header>
+  <div class="hero">
+  <div>
+  <h1>Wealthsimple Visa Infinite Privilege* Maximizer</h1>
+  <p class="lede">The simplest card in this guide: <b>2% cash back on everything</b>, with no categories, no caps and <b>no foreign transaction fees</b>, plus 6 airport lounge passes and premium insurance. It costs $240 a year unless Wealthsimple waives the fee, which it does for most people who already bank or invest with it. Here's how to qualify, how to get the fee waived, and how it compares on your spending.</p>
+  </div>
+  <img src="wealthsimple-visa-infinite-privilege-card.png" alt="The Wealthsimple Visa Infinite Privilege card" width="700" height="485">
+  </div>
+</header>
+
+<nav>
+  <a href="#act">Checklist</a><a href="#earn">Cash back</a><a href="#fee">Fee waiver</a><a href="#travel">Travel perks</a><a href="#ins">Insurance</a><a href="#vs">vs Infinite+</a><a href="#fees">Rates</a><a href="#calc">Calculator</a>
+</nav>
+
+<section id="act">
+  <h2>1. Action checklist</h2>
+  <p class="sub">Setup first, then the habits that keep the cash back and insurance working. Ticks are saved in this browser only.</p>
+  <div class="card" style="margin-bottom:14px"><b id="p_txt">0 of 0 done</b><div class="prog"><i id="p_bar"></i></div></div>
+  <div id="list"></div>
+</section>
+
+<section id="earn">
+  <h2>2. Cash back: 2% on everything</h2>
+  <div class="card tbl"><table>
+    <tr><th>What</th><th>Rate</th><th>Fine print</th></tr>
+    <tr><td>All eligible purchases, including in foreign currency</td><td class="n"><b>2%</b></td><td>No categories, no annual cap. Foreign purchases convert at the Visa network rate with no added FX fee.</td></tr>
+    <tr><td>New-client welcome boost</td><td class="n"><b>5%</b></td><td>For your first 5 weeks (35 days), on up to $10,000 of net purchases, so up to $300 extra. The card must stay open for 180 days after the boost, or Wealthsimple can claw it back.</td></tr>
+    <tr><td>Cash-like transactions, fees, refunds</td><td class="n">0%</td><td>Refunds reverse the cash back earned on them.</td></tr>
+  </table></div>
+  <div class="callout ok"><b>Redeeming is simple.</b> Move your cash back to your Wealthsimple chequing account (it earns up to 2.25% interest there), or to a TFSA, RRSP or non-registered account, at any time. There's no minimum. Unredeemed cash back is lost if you close the card, so sweep it regularly.</div>
+  <p class="gotcha"><b>Bill payments:</b> paying bills through Wealthsimple's Bill Pay takes money from chequing, not the card, so it earns nothing. To earn 2%, give the biller your card number directly.</p>
+</section>
+
+<section id="fee">
+  <h2>3. Eligibility and the fee waiver</h2>
+  <div class="grid g2">
+    <div class="card"><h3>To qualify</h3><p style="margin:6px 0 0">An active Wealthsimple chequing account, <b>plus one of</b>: $150,000 personal income, $200,000 household income, $50,000 a year of card spending, or $400,000 in assets with Wealthsimple. Pre-approval doesn't affect your credit score.</p></div>
+    <div class="card"><h3>To get the $240 fee waived</h3><p style="margin:6px 0 0"><b>$100,000+</b> in individual Wealthsimple assets (Premium or Generation status), <b>or $4,000+ a month</b> of direct deposits (a paycheque) into Wealthsimple chequing. Otherwise it's $20 a month (billed yearly in Quebec).</p></div>
+  </div>
+  <div class="callout"><b>Do the maths before moving money.</b> Waiving the fee is worth $240 a year. Moving $100,000 of investments is only worth it if you'd be happy with Wealthsimple's products anyway. Switching a paycheque is the easier route for most people. The metal card is for clients with $100,000+ in assets.</div>
+</section>
+
+<section id="travel">
+  <h2>4. Travel perks</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Airport lounges</h3><p style="margin:6px 0 0"><b>6 lounge passes</b> through the Visa Airport Companion Program (DragonPass network, 1,200+ lounges). Enrol in the Visa Airport Companion app using this card. Wealthsimple doesn't publish guest rules or the price of extra visits, so check the app after you enrol.</p></div>
+    <div class="card"><h3>No FX fee</h3><p style="margin:6px 0 0">Most cards add 2.5% on foreign purchases. This one doesn't, <i>and</i> you still earn the full 2%, so you're about 4.5% ahead of a typical card abroad.</p></div>
+    <div class="card"><h3>Airport extras</h3><p style="margin:6px 0 0">Priority security, parking and VIP offers at select airports. Which airports isn't published, so check before you travel.</p></div>
+    <div class="card"><h3>Visa Infinite Privilege perks</h3><p style="margin:6px 0 0">Luxury Hotel Collection, the Dining Series, Wine Country program, priority reservations at top restaurants, and a 24/7 concierge.</p></div>
+  </div>
+</section>
+
+<section id="ins">
+  <h2>5. Insurance cheat sheet</h2>
+  <p class="sub">From Wealthsimple's Chubb certificate of insurance (updated 2 Nov 2026). Pay the full cost of the trip, ticket, rental or phone bill with the card. In Quebec, the four travel coverages are optional: add them when you enrol or renew.</p>
+  <div class="card tbl"><table>
+    <tr><th>Coverage</th><th>Limit</th><th>Catch</th></tr>
+    <tr><td>Emergency medical</td><td class="n">$2,000,000</td><td>First <b>21 days</b> of a trip. <b>Under 65 only</b>: the cardholder, spouse and children all have to be under 65.</td></tr>
+    <tr><td>Trip cancellation</td><td class="n">$1,500/person, $5,000/trip</td><td>Pre-existing condition and pandemic exclusions apply.</td></tr>
+    <tr><td>Trip interruption</td><td class="n">$1,500/person, $5,000/trip</td><td>Plus $150/day (up to $1,000) for meals and hotel if your return is delayed.</td></tr>
+    <tr><td>Flight delay / missed connection / denied boarding</td><td class="n">$1,000/person, $2,500 per event</td><td>Starts after <b>3 hours</b>, for up to 48 hours. Pays only what airline compensation (APPR) doesn't cover.</td></tr>
+    <tr><td>Delayed baggage (6+ hours)</td><td class="n">$1,000</td><td>Essentials bought within 96 hours of arrival.</td></tr>
+    <tr><td>Lost or damaged baggage</td><td class="n">$1,000</td><td>Delayed and lost baggage combined max $1,250.</td></tr>
+    <tr><td>Rental car collision/loss</td><td>Actual cash value</td><td>Up to <b>31 days</b>. Rent 32 or more days and you lose coverage for the <i>whole</i> rental. Decline the CDW. No trucks, cargo vans or exotics.</td></tr>
+    <tr><td>Mobile phone</td><td class="n">$1,000/claim, $50 deductible</td><td>Pay your <b>monthly phone bill</b> with the card. Max 2 claims per 12 months.</td></tr>
+    <tr><td>Purchase security</td><td class="n">$1,000/claim, 90 days</td><td>$10,000 total across purchase security and extended warranty.</td></tr>
+    <tr><td>Extended warranty</td><td>Doubles warranty, +1 year max</td><td>The original warranty must be honoured in Canada or the US.</td></tr>
+  </table></div>
+  <div class="callout bad"><b>65 or older? No medical cover at all.</b> The certificate excludes everyone 65+, including a younger cardholder's 65+ spouse. Buy a separate travel medical policy. Even under 65, 21 days won't cover longer trips.</div>
+  <p class="gotcha"><b>Source conflict:</b> Wealthsimple's comparison table lists rental cars up to $65,000 MSRP, but the Chubb certificate only excludes vehicles over $100,000. Go by the certificate, but confirm with Crawford &amp; Company (1-888-359-0394) before renting a higher-end car. There's no travel accident insurance.</p>
+</section>
+
+<section id="vs">
+  <h2>6. Privilege or Infinite+?</h2>
+  <p class="sub">Both earn 2% with no FX fee and cost $240 (both waived the same way). The differences are travel perks and insurance, per Wealthsimple's own comparison.</p>
+  <div class="card tbl"><table>
+    <tr><th></th><th>Visa Infinite Privilege</th><th>Visa Infinite+</th></tr>
+    <tr><td>Airport lounges</td><td>6 passes, 1,200+ lounges</td><td>None</td></tr>
+    <tr><td>Airport perks</td><td>Priority security, parking at select airports</td><td>None</td></tr>
+    <tr><td>Travel medical</td><td>Up to $2,000,000</td><td>Up to $1,000,000</td></tr>
+    <tr><td>Trip cancellation/interruption</td><td>Up to $5,000 per trip</td><td>Up to $3,000 per trip</td></tr>
+    <tr><td>Baggage</td><td>$1,250 per trip</td><td>$1,000 per trip</td></tr>
+    <tr><td>Rental car</td><td>Included (31 days)</td><td>Not included</td></tr>
+    <tr><td>Eligibility</td><td>$150k/$200k income, $50k spend or $400k assets</td><td>Lower</td></tr>
+  </table></div>
+  <div class="callout ok"><b>Rule of thumb:</b> if you qualify for Privilege, take it, since the fee and earn rate are the same. Choose Infinite+ only if you don't meet Privilege's thresholds.</div>
+</section>
+
+<section id="fees">
+  <h2>7. Fees and rates</h2>
+  <div class="card tbl"><table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Annual fee</td><td class="n">$240 ($20/month), waived with $100k+ assets or $4k+/month direct deposit</td></tr>
+    <tr><td>Supplementary cards</td><td class="n">Not offered</td></tr>
+    <tr><td>Purchase interest</td><td class="n">20.99%</td></tr>
+    <tr><td>Cash advance interest</td><td class="n">22.99%</td></tr>
+    <tr><td>Foreign transaction fee</td><td class="n pos">0%</td></tr>
+    <tr><td>Issuer</td><td class="n">Wealthsimple Payments Inc. (Visa network)</td></tr>
+  </table></div>
+  <p class="gotcha"><b>Interest wipes out the 2%.</b> At 20.99%, one month of carried balance cancels about 10 months of cash back on the same amount. Pay in full from chequing every month.</p>
+</section>
+
+<section id="calc">
+  <h2>8. What it's worth to you</h2>
+  <p class="sub">Enter your yearly spending. The calculator compares it with a no-fee card paying 1% cash back <i>that charges the usual 2.5% FX fee</i>.</p>
+  <div class="card">
+    <div class="row"><div class="l">Annual fee waived<small>$100k+ assets with Wealthsimple, or $4,000+/month direct deposit</small></div><label class="t"><input type="checkbox" id="waive" checked> Yes</label></div>
+    <div class="row"><div class="l">Spending in Canada ($/yr)<small>2% cash back</small></div><input type="number" id="s_cad" min="0" value="30000"></div>
+    <div class="row"><div class="l">Foreign-currency spending ($/yr, in CAD)<small>2% cash back, no FX fee</small></div><input type="number" id="s_fx" min="0" value="4000"></div>
+    <div class="row"><div class="l">Lounge passes you'll use (of 6)<small>Value per visit you'd honestly pay for</small></div><div><input type="number" id="l_n" min="0" max="6" value="2" style="width:70px"> × $<input type="number" id="l_v" min="0" value="40" style="width:70px"></div></div>
+    <div class="row"><div class="l">Insurance you'd otherwise buy ($/yr)<small>Phone, trip or rental cover you'd pay for anyway. Default $0.</small></div>$<input type="number" id="v_ins" min="0" value="0" style="width:90px"></div>
+    <div class="row"><div class="l">Include the new-client 5% welcome boost?<small>Extra 3% on up to $10,000 in your first 35 days, max $300. One time.</small></div><label class="t"><input type="checkbox" id="w_on"> Include</label></div>
+  </div>
+
+  <div class="res" aria-live="polite">
+    <div class="card"><div class="k">Net value per year</div><div class="big" id="r_net">–</div><small id="r_net_d"></small></div>
+    <div class="card"><div class="k">Cash back</div><div class="big" id="r_cb">–</div><small>2% on all spending</small></div>
+    <div class="card"><div class="k">vs a no-fee 1% card</div><div class="big" id="r_vs">–</div><small id="r_vs_d"></small></div>
+    <div class="card"><div class="k">FX fees avoided</div><div class="big" id="r_fx">–</div><small>Compared with a typical 2.5% card</small></div>
+  </div>
+  <div class="callout" id="verdict"></div>
+  <p class="gotcha"><b>How it's calculated:</b> net value = 2% of all spending + welcome boost + lounge and insurance values − fee. The comparison card earns 1% on everything and pays 2.5% on foreign spending. This card has no points to value, so what you see is what you get.</p>
+</section>
+
+<section id="note">
+  <div class="callout"><b>Verify before you act.</b> Wealthsimple's own pages disagree on some details (lounge access is described both as "6 passes" and "unlimited", baggage as $1,000 and $1,250, rental cars as $65,000 and $100,000 MSRP). This page uses the Chubb certificate where they conflict. Check the live terms in the Wealthsimple app.</div>
+  <h3 style="margin-top:20px">Sources</h3>
+  <ul class="src">
+    <li><a href="https://www.wealthsimple.com/en-ca/wealthsimple-visa-infinite-privilege-card" target="_blank" rel="noopener">Wealthsimple: Visa Infinite Privilege card page and comparison</a></li>
+    <li><a href="https://www.cdn.wealthsimple.com/en-ca/pdfs/CHUBB-COI-VIP-110226-EN.pdf" target="_blank" rel="noopener">Wealthsimple / Chubb: Certificates of insurance (updated 2 Nov 2026, PDF)</a></li>
+    <li><a href="https://milesopedia.com/en/credit-card/wealthsimple-visa-infinite-privilege-card/" target="_blank" rel="noopener">Milesopedia: Wealthsimple Visa Infinite Privilege card</a></li>
+    <li><a href="https://princeoftravel.com/credit-cards/wealthsimple-visa-infinite-privilege/" target="_blank" rel="noopener">Prince of Travel: Wealthsimple Visa Infinite Privilege</a></li>
+    <li><a href="https://frugalflyer.ca/blog/review-wealthsimple-visa-infinite-privilege-credit-card/" target="_blank" rel="noopener">Frugal Flyer: Wealthsimple Visa Infinite and Privilege review</a></li>
+    <li><a href="https://jayflyer.com/credit-cards/wealthsimple-visa-infinite-privilege" target="_blank" rel="noopener">Jayflyer: Wealthsimple Visa Infinite Privilege review</a></li>
+  </ul>
+</section>
+
+<footer>Travel rich. Spend smart. · Independent guide, not affiliated with Wealthsimple or Visa. Not financial advice.</footer>
+</div>
+
+<script>
+//<calc>
+function calcWS(i){
+  var fee=i.waive?0:240;
+  var spend=(i.cad||0)+(i.fx||0);
+  var cb=spend*0.02;
+  var welcome=i.welcome?Math.min(spend,10000)*0.03:0;
+  var lounge=Math.min(6,i.ln||0)*(i.lv||0);
+  var perks=lounge+(i.ins||0);
+  var net=cb+welcome+perks-fee;
+  var fxSaved=(i.fx||0)*0.025;
+  var bench=spend*0.01-fxSaved;
+  return {fee:fee,spend:spend,cb:cb,welcome:welcome,lounge:lounge,perks:perks,net:net,fxSaved:fxSaved,bench:bench,vs:net-bench};
+}
+//</calc>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var money=function(n){var s=Math.round(Math.abs(n)).toLocaleString('en-CA');return (n<0?'−$':'$')+s};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:0}
+function run(){
+  var r=calcWS({waive:$('waive').checked,cad:num('s_cad'),fx:num('s_fx'),ln:num('l_n'),lv:num('l_v'),ins:num('v_ins'),welcome:$('w_on').checked});
+  $('r_net').textContent=money(r.net);$('r_net').className='big '+(r.net>=0?'pos':'neg');
+  $('r_net_d').textContent=money(r.cb)+' cash back'+(r.welcome?' + '+money(r.welcome)+' boost':'')+(r.perks?' + '+money(r.perks)+' perks':'')+' − '+money(r.fee)+' fee';
+  $('r_cb').textContent=money(r.cb);
+  $('r_vs').textContent=(r.vs>=0?'+':'')+money(r.vs);$('r_vs').className='big '+(r.vs>=0?'pos':'neg');
+  $('r_vs_d').textContent='The 1% card would net '+money(r.bench)+' after FX fees';
+  $('r_fx').textContent=money(r.fxSaved);
+  var v=$('verdict'),msg,cls='callout';
+  var be=r.fee>0?(r.fee-r.perks)/0.01:0;
+  if(r.vs>=1){cls+=' ok';msg='<b>The Wealthsimple card wins by '+money(r.vs)+' a year.</b> '+(r.fee===0?'With the fee waived, every dollar you spend earns twice what a 1% card pays, and more abroad.':'Even after the $240 fee, your spending is high enough to come out ahead.');}
+  else{cls+=' bad';msg='<b>A no-fee 1% card beats this by '+money(-r.vs)+' a year.</b> Paying $240 a year needs about '+money(Math.max(0,be))+' of spending just to break even. Getting the fee waived (with a paycheque deposit or $100k in assets) changes the picture completely.';}
+  if(!$('waive').checked)msg+=' <br><br>Tick "fee waived" to see the result once the fee is waived.';
+  if($('w_on').checked)msg+=' <br><br>This includes the one-time welcome boost. Untick it to see a normal year.';
+  v.className=cls;v.innerHTML=msg;
+}
+document.querySelectorAll('#calc input').forEach(function(e){e.addEventListener('input',run);e.addEventListener('change',run)});
+
+var items=[
+{id:'w1',tag:'Before applying',hot:1,t:'Check you qualify',v:'Income, spend or assets',s:['Open a Wealthsimple chequing account if you don\'t have one.','Confirm one of: $150k personal or $200k household income, $50k a year of card spending, or $400k in Wealthsimple assets.','Use the in-app pre-approval, which doesn\'t affect your credit score.'],g:'Meeting the criteria doesn\'t guarantee approval. If you don\'t qualify, the Visa Infinite+ card has the same 2% and fee structure.'},
+{id:'w2',tag:'Before applying',hot:1,t:'Set up the fee waiver',v:'Saves $240 a year',s:['Switch at least $4,000 a month of paycheque direct deposit to Wealthsimple chequing,','or hold $100,000+ in individual Wealthsimple assets (which also gets you the metal card).'],g:'Without one of these, the fee is $20 a month. Only move investments if you\'re comfortable with Wealthsimple\'s platform.'},
+{id:'w3',tag:'First 35 days',hot:1,t:'Use the 5% welcome boost (new clients)',v:'Up to $300 extra',s:['The boost starts within about a day of approval.','Time planned big purchases (flights, appliances, insurance premiums) into the first 5 weeks.','Up to $10,000 of net purchases earn 5% instead of 2%.'],g:'Keep the card open for 180 days after the boost or it can be clawed back. Existing clients need a personal invitation.'},
+{id:'w4',tag:'Day 1',t:'Enrol in Visa Airport Companion',v:'6 lounge passes',s:['Download the Visa Airport Companion app.','Register with your Privilege card to verify eligibility.','Show the digital membership card at the lounge.'],g:'Guest rules and the price of extra visits aren\'t published. Check them in the app before you bring someone.'},
+{id:'w5',tag:'Day 1',t:'Put your phone bill on the card',v:'$1,000 phone insurance',s:['Set your monthly wireless bill to auto-pay with this card.','Coverage starts the month after the first payment.'],g:'Miss a month and coverage is suspended. There\'s a $50 deductible and a maximum of 2 claims a year. Prepaid plans aren\'t covered.'},
+{id:'w6',tag:'Day 1',t:'Pay billers with the card number, not Bill Pay',v:'Earn 2% on bills',s:['Give utilities, insurance and other billers the card number directly.','Wealthsimple Bill Pay draws from chequing and earns nothing.'],g:'Some billers charge a fee for credit card payments. 2% won\'t cover a 2.5% surcharge.'},
+{id:'w7',tag:'Abroad',t:'Make this your card for foreign currency',v:'2% back, 0% FX',s:['Use it abroad and for online purchases in USD or other currencies.','Always choose to pay in the local currency, not CAD (avoid "dynamic currency conversion").'],g:'Dynamic currency conversion at the terminal adds the merchant\'s own markup and cancels out the no-FX benefit.'},
+{id:'w8',tag:'Every trip',t:'Pay the full trip with the card and check your age',v:'Unlocks travel insurance',s:['Charge the full ticket, trip and rental cost to the card.','Medical covers the first 21 days, and only if everyone covered is under 65.','Quebec residents: add the optional travel coverages when you enrol or renew.'],g:'If anyone on the trip is 65+, they have no medical cover. Buy a separate policy.'},
+{id:'w9',tag:'Rentals',t:'Keep rentals to 31 days or less and decline the CDW',v:'Primary rental car cover',s:['Pay the entire rental with the card and decline the rental company\'s CDW.','If you need a car longer, leave a full calendar day between rentals.'],g:'A 32-day rental voids coverage for the entire rental, not just the extra days.'},
+{id:'w10',tag:'Monthly',t:'Sweep cash back into chequing or your TFSA/RRSP',v:'Earn interest, avoid losing it',s:['Redeem cash back in the app. There\'s no minimum.','Chequing pays up to 2.25%. A TFSA or RRSP lets it grow tax-sheltered.'],g:'Unredeemed cash back is forfeited if the card is closed.'},
+{id:'w11',tag:'Every month',t:'Pay the full balance from chequing',v:'Avoid 20.99% interest',s:['Turn on automatic full-balance payments from Wealthsimple chequing.'],g:'Missing two minimum payments in a row reportedly raises the rate to 25.99%.'}
+];
+var KEY='ws_vip_checks_v1';
+var saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+var list=$('list');
+items.forEach(function(it){
+  var d=document.createElement('details');
+  var steps=it.s.map(function(x){return '<li>'+x+'</li>'}).join('');
+  d.innerHTML='<summary><input type="checkbox" data-id="'+it.id+'" aria-label="Mark done: '+it.t+'"'+(saved[it.id]?' checked':'')+'><div class="tx"><b>'+it.t+'</b><span><span class="tag'+(it.hot?' hot':'')+'">'+it.tag+'</span>'+it.v+'</span></div></summary><div class="body"><ol>'+steps+'</ol><div class="gotcha"><b>Gotcha:</b> '+it.g+'</div></div>';
+  list.appendChild(d);
+});
+list.addEventListener('click',function(e){if(e.target.matches('input[type=checkbox]'))e.stopPropagation()});
+list.addEventListener('change',function(e){
+  var t=e.target;if(!t.dataset.id)return;
+  saved[t.dataset.id]=t.checked;
+  try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(x){}
+  prog();
+});
+function prog(){
+  var n=items.filter(function(i){return saved[i.id]}).length;
+  $('p_txt').textContent=n+' of '+items.length+' done';
+  $('p_bar').style.width=(n/items.length*100)+'%';
+}
+prog();run();
+})();
+</script>
+</body>
+</html>
