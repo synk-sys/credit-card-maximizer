@@ -1,0 +1,318 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Scotiabank Gold Amex Maximizer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FAF6EE;--card:#FFFFFF;--fg:#1A2B3C;--mut:#5B6877;--line:#E4DCCB;--accent:#8A5D00;--accent-fg:#fff;--ok:#1E7A4C;--warn:#A85F00;--bad:#B3261E;--chip:#EFE8D8;--shadow:0 1px 2px rgba(26,43,60,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#E8C060;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#E8C060;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1}
+h2{font-size:clamp(22px,4vw,28px);margin-bottom:6px}
+h3{font-size:18px}
+header{padding:36px 0 20px}
+.lede{color:var(--mut);max-width:62ch;margin:12px 0 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{white-space:nowrap;font-size:13px;font-weight:500;color:var(--fg);text-decoration:none;background:var(--chip);padding:6px 12px;border-radius:99px}
+section{padding-top:36px;scroll-margin-top:56px}
+.sub{color:var(--mut);margin:0 0 16px;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.callout{background:var(--card);border-radius:8px;padding:12px 14px;margin:14px 0;border:1px solid var(--line);border-left:4px solid var(--warn)}
+.callout b{color:var(--warn)}
+.callout.ok{border-left-color:var(--ok)}.callout.ok b{color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}.callout.bad b{color:var(--bad)}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .l{min-width:0;flex:1 1 200px}
+.row .l small{display:block;color:var(--mut);font-size:13px}
+label.t{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex:none}
+input[type=number],select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:110px}
+input[type=range]{accent-color:var(--accent);width:150px}
+.big{font-family:Fraunces,serif;font-size:clamp(30px,7vw,46px);line-height:1}
+.res{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:14px}
+.res .card .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.res .card small{display:block;color:var(--mut);font-size:13px;margin-top:6px}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px}
+summary{cursor:pointer;padding:12px 14px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary .tx{flex:1;min-width:0}
+summary .tx b{display:block}
+summary .tx span{color:var(--mut);font-size:14px}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+.body{padding:0 14px 14px 44px}
+.body ol,.body ul{margin:6px 0;padding-left:20px}
+.body li{margin:4px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--fg);margin-right:4px}
+.tag.hot{background:var(--warn);color:#fff}
+.gotcha{margin-top:8px;font-size:14px;color:var(--mut)}
+.gotcha b{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog{height:8px;background:var(--chip);border-radius:99px;overflow:hidden;margin-top:6px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+a{color:var(--accent)}
+ul.plain{padding-left:18px;margin:8px 0 0}
+ul.plain li{margin:4px 0}
+.src li{font-size:14px;margin:4px 0}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.switch{display:flex;justify-content:flex-end;padding-top:14px}
+.switch label{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.switch select{font:500 14px/1.3 Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:240px;max-width:100%;box-shadow:var(--shadow);cursor:pointer}
+@media(min-width:1420px){.switch{position:fixed;top:24px;right:24px;z-index:10;padding:0}}
+.hero{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.3fr 1fr}}
+.hero img{display:block;width:100%;max-width:340px;height:auto;margin:0 auto;border-radius:14px;filter:drop-shadow(0 18px 28px rgba(26,43,60,.28))}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="switch"><label for="cardsel">Switch card<select id="cardsel" onchange="location.href=this.value">
+  <option value="index.html">Amex Platinum (Canada)</option>
+  <option value="amex-cobalt.html">Amex Cobalt</option>
+  <option value="scotiabank-gold-amex.html" selected>Scotiabank Gold Amex</option>
+  <option value="rogers-red-world-elite.html">Rogers Red World Elite Mastercard</option>
+  <option value="rbc-avion-visa-infinite.html">RBC Avion Visa Infinite</option>
+</select></label></div>
+<script>addEventListener('pageshow',function(){var s=document.getElementById('cardsel');s.value=s.querySelector('[selected]').value})</script>
+<header>
+  <div class="hero">
+  <div>
+  <h1>Scotiabank Gold American Express® Card Maximizer</h1>
+  <p class="lede">A $120 card that earns up to 6 Scene+ points per dollar on groceries, 5× on dining and entertainment, charges <b>no foreign transaction fees</b>, and has solid travel insurance. The welcome offer is at a record high of 65,000 points for accounts opened by <b>3 January 2027</b>. Here's how to get the most from it, the traps to avoid, and a calculator to check whether it's worth the fee.</p>
+  </div>
+  <img src="scotiabank-gold-amex-card.png" alt="The Scotiabank Gold American Express Card" width="640" height="402">
+  </div>
+</header>
+
+<nav>
+  <a href="#act">Checklist</a><a href="#earn">Earning</a><a href="#redeem">Redeeming</a><a href="#fx">No FX fee</a><a href="#perks">Perks</a><a href="#ins">Insurance</a><a href="#fees">Fees</a><a href="#calc">Calculator</a>
+</nav>
+
+<section id="act">
+  <h2>1. Action checklist</h2>
+  <p class="sub">Ordered by deadline, then by how much each step is worth. Ticks are saved in this browser only.</p>
+  <div class="card" style="margin-bottom:14px"><b id="p_txt">0 of 0 done</b><div class="prog"><i id="p_bar"></i></div></div>
+  <div id="list"></div>
+</section>
+
+<section id="earn">
+  <h2>2. How you earn Scene+ points</h2>
+  <div class="card tbl"><table>
+    <tr><th>Category (paid in CAD)</th><th>Points per $1</th><th>Fine print</th></tr>
+    <tr><td><b>Sobeys family grocers:</b> Sobeys, IGA, Safeway, Foodland, FreshCo, Thrifty Foods, Co-op, Voilà, Chalo! FreshCo, Les Marchés Tradition, Rachelle Béry</td><td class="n"><b>6</b></td><td>The list can change without notice. Check scotiabank.com/participatingstores.</td></tr>
+    <tr><td>Other grocery stores, dining, food delivery and food subscriptions</td><td class="n">5</td><td>The merchant must be coded as grocery or dining on the Amex network.</td></tr>
+    <tr><td>Entertainment: movies, theatre, ticket agencies</td><td class="n">5</td><td>Includes Cineplex.</td></tr>
+    <tr><td>Hotels and car rentals booked through Scene+ Travel (Expedia)</td><td class="n">4</td><td>1 base point plus 3 extra. Other travel earns 1×.</td></tr>
+    <tr><td>Gas, transit, ride share, taxis and select streaming</td><td class="n">3</td><td>Call 1-888-860-7093 for the current list of eligible streaming services.</td></tr>
+    <tr><td>Everything else, and <b>all foreign-currency purchases</b></td><td class="n">1</td><td>Bonus rates only apply to purchases in Canadian dollars.</td></tr>
+  </table></div>
+  <div class="callout"><b>The $50,000 cap.</b> The bonus rates (6×, 5×, 3×) apply to the first $50,000 of spending in those categories each <b>calendar year</b> (1 Jan–31 Dec). After that, everything earns 1×. That's about $960 a week before the cap matters, so most households won't reach it.</div>
+  <p class="gotcha"><b>Earn twice:</b> scan your Scene+ card at Sobeys-family stores, Cineplex, Home Hardware and other Scene+ partners, then pay with this card, to earn points from both.</p>
+</section>
+
+<section id="redeem">
+  <h2>3. Redeeming: worth 1¢ a point at best</h2>
+  <p class="sub">Scene+ is a fixed-value program: points don't transfer to airline or hotel programs. The goal is to never take less than 1¢ a point.</p>
+  <div class="card tbl"><table>
+    <tr><th>Redemption</th><th>Points</th><th>Value</th><th>¢ / point</th></tr>
+    <tr><td>Apply Points to Travel: any travel charged to the card in the last 12 months</td><td class="n">20,000</td><td class="n">$200</td><td class="n pos">1.00¢</td></tr>
+    <tr><td>Scene+ Travel (Expedia): flights, hotels, cars</td><td class="n">20,000</td><td class="n">$200</td><td class="n pos">1.00¢</td></tr>
+    <tr><td>Groceries at eligible stores (Sobeys family)</td><td class="n">10,000</td><td class="n">$100</td><td class="n pos">1.00¢</td></tr>
+    <tr><td>Home Hardware</td><td class="n">5,000</td><td class="n">$50</td><td class="n pos">1.00¢</td></tr>
+    <tr><td>Cineplex movie tickets</td><td class="n">1,000</td><td class="n">$10</td><td class="n pos">1.00¢</td></tr>
+    <tr><td>Account credit</td><td class="n">3,000</td><td class="n">$20</td><td class="n neg">0.67¢</td></tr>
+  </table></div>
+  <div class="callout ok"><b>The best move.</b> Book travel anywhere you like (an airline website, Airbnb, a cruise line), pay with this card, then use <b>Apply Points to Travel</b> on sceneplus.ca within 12 months. You get full 1¢ value with no blackout dates, and you keep the airline's own fare.</div>
+  <p class="gotcha"><b>Avoid</b> account-credit redemptions (0.67¢). Use groceries or travel instead. At 1¢ a point, 6× is effectively 6% back at Sobeys-family stores and 5× is 5% on dining.</p>
+</section>
+
+<section id="fx">
+  <h2>4. No foreign transaction fees</h2>
+  <div class="grid g2">
+    <div class="card"><h3>What it saves</h3><p style="margin:6px 0 0">Most Canadian cards add 2.5% to every foreign-currency purchase. This one charges only the exchange rate. On $5,000 of travel or US online shopping, that saves $125.</p></div>
+    <div class="card"><h3>The catch</h3><p style="margin:6px 0 0">Foreign-currency purchases earn only 1× (even restaurants), so you get about 1% back plus the 2.5% saving. It's still among the best Canadian cards to use abroad.</p></div>
+  </div>
+  <div class="callout"><b>Acceptance:</b> Amex isn't taken everywhere abroad, especially at small merchants in Europe and Asia. Bring a no-FX Visa or Mastercard as backup. In Canada, Costco takes only Mastercard.</div>
+</section>
+
+<section id="perks">
+  <h2>5. Perks</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Shell fuel savings</h3><p style="margin:6px 0 0">Link the card at Shell Canada for up to 12¢/L in value. Check the current offer and how to link in the Scene+ app.</p></div>
+    <div class="card"><h3>Avis and Budget</h3><p style="margin:6px 0 0">Up to 25% off base rates in Canada and the US. Book at avis.com/scotiabankgoldAMEX or use discount code <b>C231401</b>.</p></div>
+    <div class="card"><h3>Priority Pass discount</h3><p style="margin:6px 0 0">A discounted membership (1,200+ lounges). You still pay for it: no free visits are included.</p></div>
+    <div class="card"><h3>Amex Offers</h3><p style="margin:6px 0 0">Targeted statement credits and bonus points. Add them in the Scotia app before you shop.</p></div>
+    <div class="card"><h3>24/7 concierge</h3><p style="margin:6px 0 0">Restaurant reservations, tickets and gift ideas through Ten Lifestyle Group.</p></div>
+    <div class="card"><h3>Scotia SelectPay</h3><p style="margin:6px 0 0">Split purchases of $100+ into instalments with no plan fee, at a lower interest rate. It's still borrowing, so use it carefully.</p></div>
+  </div>
+</section>
+
+<section id="ins">
+  <h2>6. Insurance cheat sheet</h2>
+  <p class="sub">The strongest part of this card. Most coverage requires charging <b>at least 75%</b> of the trip to the card. Limits below are from Scotiabank's product page.</p>
+  <div class="card tbl"><table>
+    <tr><th>Coverage</th><th>Limit</th><th>Catch</th></tr>
+    <tr><td>Emergency medical</td><td class="n">$1,000,000</td><td><b>25 days</b> per trip under 65, <b>3 days</b> at 65+. Covers you, your spouse and dependent children.</td></tr>
+    <tr><td>Trip cancellation / interruption</td><td class="n">$1,500/person, $10,000/trip</td><td>Charge at least 75% of the trip cost.</td></tr>
+    <tr><td>Flight delay</td><td class="n">$500 per person</td><td>Charge at least 75% of the ticket.</td></tr>
+    <tr><td>Delayed and lost luggage</td><td class="n">Up to $1,000</td><td>Charge the full ticket cost.</td></tr>
+    <tr><td>Common carrier travel accident</td><td class="n">$500,000/person, $1M per accident</td><td>Charge at least 75% of the trip.</td></tr>
+    <tr><td>Rental car collision/loss</td><td>Included</td><td>Rent in your name, charge the full cost and decline the CDW/LDW. Check the certificate for vehicle and day limits.</td></tr>
+    <tr><td>Hotel/motel burglary</td><td class="n">$1,000</td><td>Hotels in Canada and the US only.</td></tr>
+    <tr><td>Mobile device</td><td class="n">$1,000</td><td>Charge the phone in full, or pay the plan's wireless bills with the card.</td></tr>
+    <tr><td>Purchase security</td><td>90 days</td><td>Theft, loss or damage. Pays only what other insurance doesn't.</td></tr>
+    <tr><td>Extended warranty</td><td>Doubles the warranty, up to +1 year</td><td>Charge the full price.</td></tr>
+  </table></div>
+  <div class="callout ok"><b>Better than most at $120:</b> 25 days of medical cover (most mid-tier cards give 15), plus trip cancellation and no FX fees. That makes it a strong "pay for the trip" card. Travellers 65+ still need their own medical policy, since the card covers only 3 days.</div>
+</section>
+
+<section id="fees">
+  <h2>7. Fees and rates</h2>
+  <div class="card tbl"><table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Annual fee</td><td class="n">$120 (rebated up to $150/yr with an Ultimate Package; first year waived with a Preferred Package)</td></tr>
+    <tr><td>Supplementary cards</td><td class="n">$29 each</td></tr>
+    <tr><td>Income requirement</td><td class="n">$12,000 personal</td></tr>
+    <tr><td>Minimum credit limit</td><td class="n">$5,000</td></tr>
+    <tr><td>Purchase interest</td><td class="n">21.99%</td></tr>
+    <tr><td>Cash advances and balance transfers</td><td class="n">22.99%</td></tr>
+    <tr><td>Foreign transaction fee</td><td class="n pos">None</td></tr>
+  </table></div>
+  <p class="gotcha"><b>Fee waivers aren't free:</b> the Ultimate and Preferred chequing packages have their own monthly fees unless you keep a minimum balance. Only count the waiver if you'd hold that account anyway.</p>
+</section>
+
+<section id="calc">
+  <h2>8. Is it worth $120 to you?</h2>
+  <p class="sub">Enter your yearly spending. The calculator applies the $50,000 cap and compares the card with a no-fee card paying 1% cash back <i>that charges the usual 2.5% FX fee</i>.</p>
+  <div class="card">
+    <div class="row"><div class="l">Annual fee rebated<small>Ultimate Package chequing (has its own monthly fee)</small></div><label class="t"><input type="checkbox" id="waive"> Yes</label></div>
+    <div class="row"><div class="l">Supplementary cards<small>$29 each</small></div><input type="number" id="supp" min="0" max="9" value="0" style="width:70px"></div>
+    <div class="row"><div class="l">Sobeys-family groceries ($/yr)<small>Sobeys, Safeway, IGA, FreshCo, Foodland, Co-op… 6×</small></div><input type="number" id="s_6" min="0" value="6000"></div>
+    <div class="row"><div class="l">Other groceries, dining, entertainment ($/yr)<small>5×</small></div><input type="number" id="s_5" min="0" value="4000"></div>
+    <div class="row"><div class="l">Gas, transit, streaming ($/yr)<small>3×</small></div><input type="number" id="s_3" min="0" value="2500"></div>
+    <div class="row"><div class="l">Hotels and cars via Scene+ Travel ($/yr)<small>4×</small></div><input type="number" id="s_4" min="0" value="0"></div>
+    <div class="row"><div class="l">Foreign-currency spending ($/yr, in CAD)<small>1×, no FX fee</small></div><input type="number" id="s_fx" min="0" value="3000"></div>
+    <div class="row"><div class="l">Everything else ($/yr)<small>1×</small></div><input type="number" id="s_1" min="0" value="10000"></div>
+    <div class="row"><div class="l">How you'll redeem (¢ per point)<small>1.0 = travel or groceries. 0.67 = account credit.</small></div><div><input type="range" id="cpp" min="0.6" max="1" step="0.01" value="1"> <b id="o_cpp">1.00</b>¢</div></div>
+    <div class="row"><div class="l">Include the welcome offer?<small>65,000 points, one time (40,000 after $2,000 in 3 months, 25,000 after $7,500 in 12 months). Accounts opened 2 Nov 2026–3 Jan 2027.</small></div><label class="t"><input type="checkbox" id="w_on"> Include</label></div>
+  </div>
+
+  <div class="res" aria-live="polite">
+    <div class="card"><div class="k">Net value per year</div><div class="big" id="r_net">–</div><small id="r_net_d"></small></div>
+    <div class="card"><div class="k">Effective return</div><div class="big" id="r_pct">–</div><small>Net value ÷ total spending</small></div>
+    <div class="card"><div class="k">vs a no-fee 1% card</div><div class="big" id="r_vs">–</div><small id="r_vs_d"></small></div>
+    <div class="card"><div class="k">FX fees avoided</div><div class="big" id="r_fx">–</div><small>Compared with a typical 2.5% card</small></div>
+  </div>
+  <div class="callout" id="verdict"></div>
+  <p class="gotcha"><b>How it's calculated:</b> spending in the 6×/5×/3×/4× categories above $50,000 a year earns 1×, split across those categories in proportion. Net value = points × redemption value − fees. The comparison card earns 1% on everything and pays 2.5% on foreign spending.</p>
+</section>
+
+<section id="note">
+  <div class="callout"><b>Verify before you act.</b> Earn rates, eligible grocers and offers can change without notice. Check the live terms on scotiabank.com and in the Scene+ app.</div>
+  <h3 style="margin-top:20px">Sources</h3>
+  <ul class="src">
+    <li><a href="https://www.scotiabank.com/ca/en/personal/credit-cards/american-express/gold-card.html" target="_blank" rel="noopener">Scotiabank: Scotiabank Gold American Express Card product page and legal terms</a></li>
+    <li><a href="https://www.scotiabank.com/content/dam/scotiabank/canada/common/documents/pdf/SCOTIABANK-GOLD-Amex-Eng-Ekit.pdf" target="_blank" rel="noopener">Scotiabank: Gold Amex welcome kit and certificates of insurance (PDF)</a></li>
+    <li><a href="https://milesopedia.com/en/offers/cards/new-offer-scotiabank-gold-american-express/" target="_blank" rel="noopener">Milesopedia: Scotiabank Gold Amex, up to 65,000 points</a></li>
+    <li><a href="https://princeoftravel.com/deals/scotiabank-credit-card-offers/" target="_blank" rel="noopener">Prince of Travel: Scotiabank Scene+ credit card offers</a></li>
+  </ul>
+</section>
+
+<footer>Travel rich. Spend smart. · Independent guide, not affiliated with Scotiabank, Scene+ or American Express. Not financial advice.</footer>
+</div>
+
+<script>
+//<calc>
+var CAP=50000;
+function calcScotia(i){
+  var fee=(i.waive?0:120)+29*(i.supp||0);
+  var acc=[[i.s6||0,6],[i.s5||0,5],[i.s3||0,3],[i.s4||0,4]];
+  var accSpend=acc.reduce(function(a,p){return a+p[0]},0);
+  var f=accSpend>CAP?CAP/accSpend:1;
+  var pts=acc.reduce(function(a,p){return a+p[0]*f*p[1]+p[0]*(1-f)},0)+(i.fx||0)+(i.s1||0);
+  var spend=accSpend+(i.fx||0)+(i.s1||0);
+  var bonus=i.welcome?65000:0;
+  var val=(pts+bonus)*(i.cpp||0)/100;
+  var net=val-fee;
+  var fxSaved=(i.fx||0)*0.025;
+  var bench=spend*0.01-fxSaved;
+  return {fee:fee,pts:pts,bonus:bonus,val:val,net:net,spend:spend,fxSaved:fxSaved,bench:bench,vs:net-bench,pct:spend>0?net/spend*100:0,overCap:accSpend>CAP};
+}
+//</calc>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var money=function(n){var s=Math.round(Math.abs(n)).toLocaleString('en-CA');return (n<0?'−$':'$')+s};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:0}
+function run(){
+  $('o_cpp').textContent=(+$('cpp').value).toFixed(2);
+  var r=calcScotia({waive:$('waive').checked,supp:num('supp'),s6:num('s_6'),s5:num('s_5'),s3:num('s_3'),s4:num('s_4'),fx:num('s_fx'),s1:num('s_1'),cpp:+$('cpp').value,welcome:$('w_on').checked});
+  $('r_net').textContent=money(r.net);$('r_net').className='big '+(r.net>=0?'pos':'neg');
+  $('r_net_d').textContent=Math.round(r.pts+r.bonus).toLocaleString('en-CA')+' points = '+money(r.val)+' − '+money(r.fee)+' fees';
+  $('r_pct').textContent=r.pct.toFixed(2)+'%';
+  $('r_vs').textContent=(r.vs>=0?'+':'')+money(r.vs);$('r_vs').className='big '+(r.vs>=0?'pos':'neg');
+  $('r_vs_d').textContent='The 1% card would net '+money(r.bench)+' after FX fees';
+  $('r_fx').textContent=money(r.fxSaved);
+  var v=$('verdict'),msg,cls='callout';
+  if(r.vs>=1){cls+=' ok';msg='<b>The Gold Amex wins by '+money(r.vs)+' a year.</b> Your grocery and dining spending does most of the work. Redeem through Apply Points to Travel or groceries to keep the full 1¢ a point.';}
+  else{cls+=' bad';msg='<b>A no-fee 1% card beats this by '+money(-r.vs)+' a year.</b> Your spending is mostly in 1× categories. The card earns its fee through groceries (especially Sobeys-family stores), dining and travel abroad.';}
+  if(r.overCap)msg+=' <br><br>You are over the $50,000 calendar-year cap on bonus categories. Spending above it earns only 1×.';
+  if(+$('cpp').value<1)msg+=' <br><br>You\'re redeeming below 1¢. Switch to travel or grocery redemptions to get full value.';
+  if($('w_on').checked)msg+=' <br><br>This includes the one-time 65,000-point welcome offer. Untick it to see a normal year.';
+  v.className=cls;v.innerHTML=msg;
+}
+document.querySelectorAll('#calc input').forEach(function(e){e.addEventListener('input',run);e.addEventListener('change',run)});
+
+var items=[
+{id:'s1',tag:'By 3 Jan 2027',hot:1,t:'Open the account before the 65,000-point offer ends',v:'Up to 65,000 points ($650)',s:['The account must be opened (not just applied for) between 2 Nov 2026 and 3 Jan 2027.','Check eligibility: you can\'t have held any Scotiabank personal credit card in the past 2 years, including product switches.','Opening a Preferred Package chequing account waives the first year\'s fee.'],g:'The fee isn\'t waived in year one unless you have a Preferred or Ultimate package. Bonus points post about 8 weeks after you qualify.'},
+{id:'s2',tag:'First 3 months',hot:1,t:'Spend $2,000 in your first 3 months',v:'40,000 points',s:['That\'s about $670 a month.','Put groceries, dining and recurring bills on the card.'],g:'Returns reduce eligible purchases. Payments, cash advances, interest and fees don\'t count.'},
+{id:'s3',tag:'First 12 months',hot:1,t:'Reach $7,500 in your first 12 months',v:'25,000 more points',s:['Track your total from the account-opening date, not the calendar year.','Plan big purchases (travel, appliances) to land inside the year.'],g:'Spending by supplementary cards counts, but the bonus goes to the primary cardholder\'s Scene+ account.'},
+{id:'s4',tag:'Day 1',t:'Shop at Sobeys-family stores and scan Scene+',v:'6× plus partner points',s:['Use it at Sobeys, Safeway, IGA, FreshCo, Foodland, Co-op, Thrifty, Voilà online.','Scan your Scene+ card at checkout to earn partner points too.'],g:'The eligible list can change without notice. Check scotiabank.com/participatingstores.'},
+{id:'s5',tag:'Day 1',t:'Link the card at Shell',v:'Up to 12¢/L in value',s:['Link the card in the Scene+ app.','Fill up at Shell Canada and pay with the linked card.'],g:'"Up to" means the full value depends on Shell\'s current offer. Gas also earns 3× from the card.'},
+{id:'s6',tag:'Every trip',t:'Pay for trips with the card, then Apply Points to Travel',v:'Full 1¢ a point',s:['Book with any airline, hotel or travel site and pay with the card.','Once it posts, go to sceneplus.ca → Apply Points to Travel.','You have 12 months from the purchase date to redeem.'],g:'Charge at least 75% of the trip to keep trip cancellation, delay and accident insurance.'},
+{id:'s7',tag:'Abroad',t:'Make this your card for foreign currency',v:'Saves 2.5% on every foreign purchase',s:['Use it for travel abroad and for online shopping in USD or other currencies.','Carry a no-FX Visa or Mastercard for places that don\'t take Amex.'],g:'Foreign-currency purchases earn only 1×, even at restaurants.'},
+{id:'s8',tag:'When booking',t:'Compare Scene+ Travel prices before booking hotels or cars',v:'4× on hotels and cars',s:['Check the same hotel or car on Scene+ Travel (Expedia) and on the provider\'s own site.','Book on Scene+ Travel only if the price is close: 4× is about 4% back.'],g:'Booking through Expedia can mean losing hotel loyalty points, elite benefits and flexible cancellation.'},
+{id:'s9',tag:'Rentals',t:'Use the Avis/Budget discount and decline the CDW',v:'Up to 25% off and insurance',s:['Book at avis.com/scotiabankgoldAMEX or with code C231401.','Rent in your own name, charge the full rental to the card, and decline the CDW/LDW.'],g:'The discount applies to base rates only. Taxes and fees are extra.'},
+{id:'s10',tag:'Redeeming',t:'Never redeem below 1¢ a point',v:'Avoid 0.67¢ account credits',s:['Use points for travel, Sobeys-family groceries, Home Hardware or Cineplex.','Skip the 3,000 points = $20 account credit.'],g:'Some redemptions have minimum point amounts.'},
+{id:'s11',tag:'Every month',t:'Pay the full statement balance',v:'Avoid 21.99% interest',s:['Set up an automatic payment of the full balance from your chequing account.'],g:'At 21.99%, even one month of interest cancels out several months of rewards.'}
+];
+var KEY='scotia_gold_amex_checks_v1';
+var saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+var list=$('list');
+items.forEach(function(it){
+  var d=document.createElement('details');
+  var steps=it.s.map(function(x){return '<li>'+x+'</li>'}).join('');
+  d.innerHTML='<summary><input type="checkbox" data-id="'+it.id+'" aria-label="Mark done: '+it.t+'"'+(saved[it.id]?' checked':'')+'><div class="tx"><b>'+it.t+'</b><span><span class="tag'+(it.hot?' hot':'')+'">'+it.tag+'</span>'+it.v+'</span></div></summary><div class="body"><ol>'+steps+'</ol><div class="gotcha"><b>Gotcha:</b> '+it.g+'</div></div>';
+  list.appendChild(d);
+});
+list.addEventListener('click',function(e){if(e.target.matches('input[type=checkbox]'))e.stopPropagation()});
+list.addEventListener('change',function(e){
+  var t=e.target;if(!t.dataset.id)return;
+  saved[t.dataset.id]=t.checked;
+  try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(x){}
+  prog();
+});
+function prog(){
+  var n=items.filter(function(i){return saved[i.id]}).length;
+  $('p_txt').textContent=n+' of '+items.length+' done';
+  $('p_bar').style.width=(n/items.length*100)+'%';
+}
+prog();run();
+})();
+</script>
+</body>
+</html>
