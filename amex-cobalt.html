@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amex Cobalt Maximizer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FAF6EE;--card:#FFFFFF;--fg:#1A2B3C;--mut:#5B6877;--line:#E4DCCB;--accent:#2450A6;--accent-fg:#fff;--ok:#1E7A4C;--warn:#A85F00;--bad:#B3261E;--chip:#EFE8D8;--shadow:0 1px 2px rgba(26,43,60,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#8DB4FF;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#8DB4FF;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1}
+h2{font-size:clamp(22px,4vw,28px);margin-bottom:6px}
+h3{font-size:18px}
+header{padding:36px 0 20px}
+.lede{color:var(--mut);max-width:62ch;margin:12px 0 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{white-space:nowrap;font-size:13px;font-weight:500;color:var(--fg);text-decoration:none;background:var(--chip);padding:6px 12px;border-radius:99px}
+section{padding-top:36px;scroll-margin-top:56px}
+.sub{color:var(--mut);margin:0 0 16px;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.callout{background:var(--card);border-radius:8px;padding:12px 14px;margin:14px 0;border:1px solid var(--line);border-left:4px solid var(--warn)}
+.callout b{color:var(--warn)}
+.callout.ok{border-left-color:var(--ok)}.callout.ok b{color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}.callout.bad b{color:var(--bad)}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .l{min-width:0;flex:1 1 200px}
+.row .l small{display:block;color:var(--mut);font-size:13px}
+label.t{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex:none}
+input[type=number],select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:110px}
+input[type=range]{accent-color:var(--accent);width:150px}
+.big{font-family:Fraunces,serif;font-size:clamp(30px,7vw,46px);line-height:1}
+.res{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:14px}
+.res .card .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.res .card small{display:block;color:var(--mut);font-size:13px;margin-top:6px}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px}
+summary{cursor:pointer;padding:12px 14px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary .tx{flex:1;min-width:0}
+summary .tx b{display:block}
+summary .tx span{color:var(--mut);font-size:14px}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+.body{padding:0 14px 14px 44px}
+.body ol,.body ul{margin:6px 0;padding-left:20px}
+.body li{margin:4px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--fg);margin-right:4px}
+.tag.hot{background:var(--warn);color:#fff}
+.gotcha{margin-top:8px;font-size:14px;color:var(--mut)}
+.gotcha b{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog{height:8px;background:var(--chip);border-radius:99px;overflow:hidden;margin-top:6px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+a{color:var(--accent)}
+ul.plain{padding-left:18px;margin:8px 0 0}
+ul.plain li{margin:4px 0}
+.src li{font-size:14px;margin:4px 0}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.switch{display:flex;justify-content:flex-end;padding-top:14px}
+.switch label{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.switch select{font:500 14px/1.3 Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:240px;max-width:100%;box-shadow:var(--shadow);cursor:pointer}
+@media(min-width:1420px){.switch{position:fixed;top:24px;right:24px;z-index:10;padding:0}}
+.hero{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.3fr 1fr}}
+.hero img{display:block;width:100%;max-width:340px;height:auto;margin:0 auto;filter:drop-shadow(0 18px 28px rgba(26,43,60,.28))}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="switch"><label for="cardsel">Switch card<select id="cardsel" onchange="location.href=this.value">
+  <option value="index.html">Amex Platinum (Canada)</option>
+  <option value="amex-cobalt.html" selected>Amex Cobalt</option>
+  <option value="rogers-red-world-elite.html">Rogers Red World Elite Mastercard</option>
+  <option value="rbc-avion-visa-infinite.html">RBC Avion Visa Infinite</option>
+</select></label></div>
+<script>addEventListener('pageshow',function(){var s=document.getElementById('cardsel');s.value=s.querySelector('[selected]').value})</script>
+<header>
+  <div class="hero">
+  <div>
+  <h1>American Express Cobalt® Card Maximizer</h1>
+  <p class="lede">The best grocery and restaurant card in Canada, for now. It earns 5 points per dollar on up to $2,500 of food spending a month, but it costs $15.99 a month, and its fixed-points flight chart <b>disappears on 6 January 2027</b>. Here's what to do before then, how to stay inside the 5× rules, and a calculator to check whether the card pays for itself.</p>
+  </div>
+  <img src="amex-cobalt-card.png" alt="The American Express Cobalt Card" width="480" height="304">
+  </div>
+</header>
+
+<nav>
+  <a href="#act">Checklist</a><a href="#earn">Earning</a><a href="#fpt">Fixed Points (ending)</a><a href="#transfer">Transfers</a><a href="#perks">Perks</a><a href="#ins">Insurance</a><a href="#fees">Fees</a><a href="#calc">Calculator</a>
+</nav>
+
+<section id="act">
+  <h2>1. Action checklist</h2>
+  <p class="sub">Ordered by deadline, then by how much each step is worth. Ticks are saved in this browser only.</p>
+  <div class="card" style="margin-bottom:14px"><b id="p_txt">0 of 0 done</b><div class="prog"><i id="p_bar"></i></div></div>
+  <div id="list"></div>
+</section>
+
+<section id="earn">
+  <h2>2. How you earn</h2>
+  <div class="card tbl"><table>
+    <tr><th>Category (merchants in Canada only)</th><th>Points per $1</th><th>Fine print</th></tr>
+    <tr><td><b>Eats &amp; drinks:</b> restaurants, fast food, coffee shops, bars, stand-alone grocery stores, food and grocery delivery</td><td class="n"><b>5</b></td><td>Up to <b>$2,500 a month</b> combined, then 1×. The count resets on the 1st of each month.</td></tr>
+    <tr><td>Streaming subscriptions from providers on Amex's list</td><td class="n">3</td><td>Pay the provider directly. Subscriptions billed through an app store, cable or phone company, or bundled with something else earn 1×.</td></tr>
+    <tr><td>Gas stations, local transit, taxis and ride sharing</td><td class="n">2</td><td>Only stand-alone gas stations. Gas at Costco or a grocery store earns 1×.</td></tr>
+    <tr><td>Hotels and car rentals booked through Amex Travel Online</td><td class="n">2</td><td>Base 1× plus 1 extra point. Booking directly with the hotel, airline or rental company earns 1×.</td></tr>
+    <tr><td>Everything else, including all foreign merchants</td><td class="n">1</td><td>Flights, foreign restaurants and online shopping all earn 1×.</td></tr>
+  </table></div>
+  <div class="callout"><b>It's the merchant code that counts, not what you buy.</b> Amex pays 5× based on how the store is coded. Stand-alone grocers such as Metro, Sobeys, IGA, Safeway and Whole Foods usually earn 5×. Big-box and superstore chains, pharmacies and warehouse clubs often earn only 1×, and convenience stores (7-Eleven, Couche-Tard) are excluded. After your first shop at a new store, check your statement to see how it coded.</div>
+  <p class="gotcha"><b>The cap in practice:</b> $2,500 a month at 5× is 12,500 points, or 150,000 points a year. Above the cap, food earns 1×, so a second card may be better for that spending.</p>
+</section>
+
+<section id="fpt">
+  <h2>3. Fixed Points Travel: gone on 6 Jan 2027</h2>
+  <p class="sub">Amex confirmed in October 2026 that the Cobalt (along with the Gold Rewards, Green and Business Gold) loses Fixed Points Travel from 6 January 2027. Platinum and Business Platinum keep it, but only by phone. A fixed number of points covers the base fare of a return economy flight, up to a maximum.</p>
+  <div class="card tbl"><table>
+    <tr><th>Zone (return economy)</th><th>Points</th><th>Max base fare</th><th>Best value</th></tr>
+    <tr><td>Popular short-haul: Calgary–Vancouver, Toronto–Montreal, Toronto–New York, Toronto–Ottawa, Montreal–New York</td><td class="n">15,000</td><td class="n">$300</td><td class="n pos">2.00¢</td></tr>
+    <tr><td>Short-haul Canada/US</td><td class="n">20,000</td><td class="n">$300</td><td class="n">1.50¢</td></tr>
+    <tr><td>Long-haul Canada/US</td><td class="n">40,000</td><td class="n">$700</td><td class="n">1.75¢</td></tr>
+    <tr><td>Alaska, Bermuda, Caribbean, Central America, Hawaii, Mexico</td><td class="n">50,000</td><td class="n">$800</td><td class="n">1.60¢</td></tr>
+    <tr><td>Europe</td><td class="n">60,000</td><td class="n">$900</td><td class="n">1.50¢</td></tr>
+    <tr><td>Worldwide</td><td class="n">100,000</td><td class="n">$1,700</td><td class="n">1.70¢</td></tr>
+  </table></div>
+  <div class="callout bad"><b>Before 6 January.</b> If a flight you're planning prices near the zone maximum, book it with Fixed Points now. Unused value below the maximum is lost: it isn't applied to taxes and isn't refunded. After the cutoff, your points can still be used for travel at 1¢ each (1,000 points = $10), or transferred to Aeroplan and the other partners below, which is usually the better option anyway.</div>
+  <p class="gotcha"><b>Source:</b> the grid and dates are from Prince of Travel's report of Amex's 20 Oct 2026 statement. Amex says it "may temporarily delay" the change. The terms don't say what happens to flights booked before 6 January for travel after it, so check before you book.</p>
+</section>
+
+<section id="transfer">
+  <h2>4. Transferring points, the best use after January</h2>
+  <div class="card tbl"><table>
+    <tr><th>Partner</th><th>Ratio (Amex : partner)</th><th>Best use</th></tr>
+    <tr><td><b>Air Canada Aeroplan</b></td><td class="n">1 : 1</td><td>The main reason to collect Cobalt points. Partner business class (Lufthansa, Swiss, ANA) and fixed short-haul awards. Usually transfers within minutes.</td></tr>
+    <tr><td>British Airways Avios</td><td class="n">1 : 1</td><td>Short non-stop oneworld flights. Bonuses of 30–40% come up from time to time.</td></tr>
+    <tr><td>Air France KLM Flying Blue</td><td class="n">1 : 1</td><td>Monthly Promo Rewards to Europe.</td></tr>
+    <tr><td>Marriott Bonvoy</td><td class="n">1 : 1.2</td><td>5th night free on award stays. Watch for Amex transfer bonuses.</td></tr>
+    <tr><td>Hilton Honors</td><td class="n">1 : 1</td><td>Rarely a good deal: Hilton points are worth about 0.5¢ each.</td></tr>
+    <tr><td>Delta, Cathay Asia Miles, Etihad</td><td class="n">1 : 0.75</td><td>Specific awards only.</td></tr>
+    <tr><td>ALL Accor</td><td class="n">2 : 1</td><td>Poor value; avoid.</td></tr>
+  </table></div>
+  <div class="callout ok"><b>Rule of thumb.</b> Redeeming points against purchases gives a flat 1¢. An Aeroplan economy award to Europe often gets 1.5–2¢, and business class can get 3¢ or more. Only transfer when you've found award seats: transfers are one-way.</div>
+  <p class="gotcha"><b>Source note:</b> ratios come from Milesopedia's partner table (September 2026). Some guides say the Cobalt has a shorter partner list, so check the live list in your Membership Rewards account before you rely on it.</p>
+</section>
+
+<section id="perks">
+  <h2>5. Perks worth using</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Instacart credit</h3><p style="margin:6px 0 0">Up to <b>$60 in statement credits</b> per 12 months on Instacart orders in Canada, until 31 Dec 2027. Credits are earned monthly, so check the conditions when you register.</p></div>
+    <div class="card"><h3>The Hotel Collection</h3><p style="margin:6px 0 0">Book 2+ consecutive nights through Amex Travel: up to US$100 hotel credit, noon check-in, 4pm late checkout and an upgrade when available. Compare the price with booking direct first.</p></div>
+    <div class="card"><h3>Amex Experiences</h3><p style="margin:6px 0 0">Front Of The Line presales and reserved tickets. A Cardmember entrance and the American Express Lounge at Rogers Stadium and RBC Amphitheatre.</p></div>
+    <div class="card"><h3>Amex Offers and Member extras</h3><p style="margin:6px 0 0">Targeted statement credits and bonus points. Add them in the app before you shop.</p></div>
+    <div class="card"><h3>Refer a friend</h3><p style="margin:6px 0 0">Earn bonus points for each approved referral, up to 225,000 points per calendar year.</p></div>
+    <div class="card"><h3>Free additional cards</h3><p style="margin:6px 0 0">No fee for additional cards. A partner's grocery and restaurant spending earns 5× too, within the same $2,500 monthly cap.</p></div>
+  </div>
+  <p class="gotcha"><b>Not included:</b> no lounge access, no travel credit, no NEXUS credit, and no trip cancellation or interruption insurance.</p>
+</section>
+
+<section id="ins">
+  <h2>6. Insurance cheat sheet</h2>
+  <p class="sub">Charge the airline ticket, hotel or rental car in full to the card. Limits below are from Amex Canada's Cobalt product page.</p>
+  <div class="card tbl"><table>
+    <tr><th>Coverage</th><th>Limit</th><th>Catch</th></tr>
+    <tr><td>Emergency medical</td><td class="n">$5,000,000</td><td><b>Under 65 only</b>, and only the first <b>15 days</b> of a trip.</td></tr>
+    <tr><td>Flight delay / denied boarding (4+ hours)</td><td class="n">$500 combined</td><td>Shares one $500 limit with baggage delay.</td></tr>
+    <tr><td>Baggage delay (6+ hours)</td><td class="n">(in the $500)</td><td>Essentials bought within 4 days of arrival.</td></tr>
+    <tr><td>Lost or stolen baggage</td><td class="n">$500 per trip</td><td>Combined for everyone covered.</td></tr>
+    <tr><td>Hotel burglary</td><td class="n">$500</td><td>Cash isn't covered.</td></tr>
+    <tr><td>Travel accident</td><td class="n">$250,000</td><td>Only on a plane, train, ship or bus paid in full with the card.</td></tr>
+    <tr><td>Car rental theft and damage</td><td>MSRP up to $85,000</td><td>Up to 48 days. Decline the rental company's CDW/LDW.</td></tr>
+    <tr><td>Mobile device</td><td class="n">$1,000 per person</td><td>Theft, loss or accidental damage, for up to 2 years from purchase. Buy or finance the device on the card.</td></tr>
+    <tr><td>Purchase Protection</td><td class="n">$1,000 per occurrence</td><td>For 90 days after purchase.</td></tr>
+    <tr><td>Buyer's Assurance</td><td>+1 year of warranty</td><td>Eligible new items charged in full.</td></tr>
+    <tr><td>Trip cancellation / interruption</td><td class="neg">Not included</td><td>Book expensive trips with another card or buy cover.</td></tr>
+  </table></div>
+  <div class="callout"><b>Reality check:</b> the travel cover is thin. There's no medical cover at all from 65, nothing past day 15, and only $500 for delays and baggage. For anything more than a short trip, pay with a card that has stronger insurance or buy a policy.</div>
+</section>
+
+<section id="fees">
+  <h2>7. Fees and rates</h2>
+  <div class="card tbl"><table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Card fee</td><td class="n">$15.99/month ($191.88/year). Quebec: $191.88 once a year</td></tr>
+    <tr><td>Additional cards</td><td class="n">Free</td></tr>
+    <tr><td>Purchase and funds-advance interest</td><td class="n">21.99%</td></tr>
+    <tr><td>After 2 missed payments in 12 months</td><td class="n">25.99%</td></tr>
+    <tr><td>After 3 or more missed payments</td><td class="n">29.99%</td></tr>
+    <tr><td>Foreign currency conversion</td><td class="n">2.5%</td></tr>
+  </table></div>
+  <p class="gotcha"><b>Abroad:</b> you earn 1 point and pay a 2.5% fee, so the card loses money on every foreign purchase. Keep it for groceries and restaurants in Canada.</p>
+  <p class="gotcha"><b>Acceptance:</b> Amex isn't accepted everywhere: Costco in Canada, for example, takes only Mastercard. Keep a Visa or Mastercard as a backup.</p>
+</section>
+
+<section id="calc">
+  <h2>8. Does it pay for its $191.88?</h2>
+  <p class="sub">Enter your typical <b>monthly</b> spending. The calculator applies the $2,500 monthly cap and compares the Cobalt with a no-fee card paying a flat 1% cash back.</p>
+  <div class="card">
+    <div class="row"><div class="l">Eats &amp; drinks ($/month)<small>Restaurants, cafés, bars, stand-alone grocers, food delivery. 5× up to $2,500.</small></div><input type="number" id="m_eats" min="0" value="800"></div>
+    <div class="row"><div class="l">Streaming ($/month)<small>3×, paid directly to providers on Amex's list</small></div><input type="number" id="m_stream" min="0" value="40"></div>
+    <div class="row"><div class="l">Gas, transit, ride share ($/month)<small>2×</small></div><input type="number" id="m_gas" min="0" value="200"></div>
+    <div class="row"><div class="l">Hotels and cars via Amex Travel ($/month)<small>2×</small></div><input type="number" id="m_trav" min="0" value="0"></div>
+    <div class="row"><div class="l">Foreign-currency spending ($/month, in CAD)<small>1×, 2.5% FX fee</small></div><input type="number" id="m_fx" min="0" value="0"></div>
+    <div class="row"><div class="l">Everything else ($/month)<small>1×</small></div><input type="number" id="m_other" min="0" value="1000"></div>
+    <div class="row"><div class="l">How you'll redeem (¢ per point)<small>1.0 = statement credit. 1.5–2.0 = Aeroplan economy awards. 2.5+ = business class.</small></div><div><input type="range" id="cpp" min="0.8" max="3" step="0.1" value="1.5"> <b id="o_cpp">1.5</b>¢</div></div>
+    <div class="row"><div class="l">Instacart credit you'll actually use ($/yr)<small>Up to $60</small></div>$<input type="number" id="v_insta" min="0" max="60" value="0" style="width:90px"></div>
+    <div class="row"><div class="l">Include the first-year welcome bonus?<small>1,250 points for each month you spend $750 (up to 15,000). One time only.</small></div><label class="t"><input type="checkbox" id="w_on"> Include</label></div>
+  </div>
+
+  <div class="res" aria-live="polite">
+    <div class="card"><div class="k">Net value per year</div><div class="big" id="r_net">–</div><small id="r_net_d"></small></div>
+    <div class="card"><div class="k">Points per year</div><div class="big" id="r_pts">–</div><small id="r_pts_d"></small></div>
+    <div class="card"><div class="k">vs a no-fee 1% card</div><div class="big" id="r_vs">–</div><small id="r_vs_d"></small></div>
+    <div class="card"><div class="k">Break-even redemption</div><div class="big" id="r_be">–</div><small>¢ per point needed to match the 1% card</small></div>
+  </div>
+  <div class="callout" id="verdict"></div>
+  <p class="gotcha"><b>How it's calculated:</b> monthly spending × 12. Eats &amp; drinks above $2,500 a month earn 1×. Net value = points × your redemption value + credits − $191.88 fee − 2.5% FX. The 1% card is assumed to charge the same FX fee.</p>
+</section>
+
+<section id="note">
+  <div class="callout"><b>Verify before you act.</b> Amex changes categories, partners and programs often, and many offers are targeted. Check the live terms in your Amex account and the Membership Rewards site.</div>
+  <h3 style="margin-top:20px">Sources</h3>
+  <ul class="src">
+    <li><a href="https://www.americanexpress.com/en-ca/credit-cards/cobalt-card/" target="_blank" rel="noopener">American Express Canada: Cobalt Card product page and footnotes</a></li>
+    <li><a href="https://princeoftravel.com/news/amex-fixed-points-travel-ending/" target="_blank" rel="noopener">Prince of Travel: Amex Fixed Points Travel is ending (22 Oct 2026)</a></li>
+    <li><a href="https://milesopedia.com/en/guide/strategy/amex-cobalt-partners-transfer/" target="_blank" rel="noopener">Milesopedia: Amex Membership Rewards transfer partners and ratios</a></li>
+    <li><a href="https://milesopedia.com/en/reviews/credit-cards/amex-cobalt-benefits/" target="_blank" rel="noopener">Milesopedia: Amex Cobalt benefits 2026</a></li>
+    <li><a href="https://milesopedia.com/en/news/programs/cobalt-amex-multiplier-outside-canada/" target="_blank" rel="noopener">Milesopedia: Cobalt multipliers now valid only in Canada</a></li>
+  </ul>
+</section>
+
+<footer>Travel rich. Spend smart. · Independent guide, not affiliated with American Express. Not financial advice.</footer>
+</div>
+
+<script>
+//<calc>
+var FEE=191.88,CAP=2500;
+function calcCobalt(i){
+  var e=i.eats||0,e5=Math.min(e,CAP),e1=Math.max(0,e-CAP);
+  var mPts=e5*5+e1+(i.stream||0)*3+(i.gas||0)*2+(i.trav||0)*2+(i.fx||0)+(i.other||0);
+  var mSpend=e+(i.stream||0)+(i.gas||0)+(i.trav||0)+(i.fx||0)+(i.other||0);
+  var pts=mPts*12,spend=mSpend*12;
+  var bonus=0;
+  if(i.welcome)bonus=mSpend>=750?15000:0;
+  var ptsVal=(pts+bonus)*(i.cpp||0)/100;
+  var fxCost=(i.fx||0)*12*0.025;
+  var credits=Math.min(60,i.insta||0);
+  var net=ptsVal+credits-FEE-fxCost;
+  var bench=spend*0.01-fxCost;
+  var be=(pts+bonus)>0?(spend*0.01+FEE-credits)/(pts+bonus)*100:0;
+  return {pts:pts,bonus:bonus,spend:spend,ptsVal:ptsVal,fxCost:fxCost,credits:credits,net:net,bench:bench,vs:net-bench,breakeven:Math.max(0,be),overCap:e>CAP,eats:e};
+}
+//</calc>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var money=function(n){var s=Math.round(Math.abs(n)).toLocaleString('en-CA');return (n<0?'−$':'$')+s};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:0}
+function run(){
+  $('o_cpp').textContent=(+$('cpp').value).toFixed(1);
+  var r=calcCobalt({eats:num('m_eats'),stream:num('m_stream'),gas:num('m_gas'),trav:num('m_trav'),fx:num('m_fx'),other:num('m_other'),cpp:+$('cpp').value,insta:num('v_insta'),welcome:$('w_on').checked});
+  $('r_net').textContent=money(r.net);$('r_net').className='big '+(r.net>=0?'pos':'neg');
+  $('r_net_d').textContent=money(r.ptsVal)+' points'+(r.credits?' + '+money(r.credits)+' Instacart':'')+' − $192 fee'+(r.fxCost?' − '+money(r.fxCost)+' FX':'');
+  $('r_pts').textContent=Math.round(r.pts+r.bonus).toLocaleString('en-CA');
+  $('r_pts_d').textContent=(r.spend>0?((r.pts/r.spend).toFixed(2)+' points per $ on average'):'')+(r.bonus?' · incl. 15,000 welcome':'');
+  $('r_vs').textContent=(r.vs>=0?'+':'')+money(r.vs);$('r_vs').className='big '+(r.vs>=0?'pos':'neg');
+  $('r_vs_d').textContent='The 1% card would return '+money(r.bench);
+  $('r_be').textContent=r.breakeven.toFixed(2)+'¢';
+  var v=$('verdict'),msg,cls='callout';
+  if(r.vs>=1){cls+=' ok';msg='<b>The Cobalt wins by '+money(r.vs)+' a year</b> at '+(+$('cpp').value).toFixed(1)+'¢ a point. Even taking a plain statement credit (1¢), you need only '+r.breakeven.toFixed(2)+'¢ to beat the 1% card'+(r.breakeven<=1?', so the card pays for itself however you redeem.':'. Transfer to Aeroplan to get well above that.');}
+  else{cls+=' bad';msg='<b>A no-fee 1% card beats this by '+money(-r.vs)+' a year.</b> The Cobalt only works if a lot of your spending is restaurants and groceries. You\'d need about '+r.breakeven.toFixed(2)+'¢ a point to break even.';}
+  if(r.overCap)msg+=' <br><br>You spend '+money(r.eats-2500)+'/month on food above the $2,500 cap. That part earns only 1×, so put it on another card.';
+  if(num('m_fx')>0)msg+=' <br><br>Foreign spending earns 1× and costs '+money(r.fxCost)+' a year in FX fees. Use a no-FX card abroad.';
+  if($('w_on').checked&&r.bonus===0)msg+=' <br><br>The welcome bonus needs $750 of spending every month, and you are below that.';
+  v.className=cls;v.innerHTML=msg;
+}
+document.querySelectorAll('#calc input').forEach(function(e){e.addEventListener('input',run);e.addEventListener('change',run)});
+
+var items=[
+{id:'c1',tag:'By 5 Jan 2027',hot:1,t:'Book any Fixed Points flights before the program ends',v:'Up to 2¢ a point',s:['Check flights you\'re planning for 2027 against the chart (section 3).','If the base fare is close to the zone maximum, book now in Amex Travel Online.','Popular short-haul routes (Toronto–Montreal, Toronto–New York and others) at 15,000 points for up to $300 are the best value.'],g:'Unused value below the maximum is lost, not applied to taxes. Ends 6 Jan 2027 for the Cobalt. The terms are silent on bookings for travel after that date.'},
+{id:'c2',tag:'First 12 months',hot:1,t:'Spend $750 every monthly billing period',v:'1,250 points a month, 15,000 total',s:['Note your statement closing date.','Make sure net purchases reach $750 in each billing period, not each calendar month.','Move recurring bills to the card if you\'re falling short.'],g:'Returns reduce net purchases. One missed month means 1,250 points lost for good. Current or former Cobalt holders don\'t qualify.'},
+{id:'c3',tag:'Day 1',t:'Make the Cobalt your grocery and restaurant card',v:'5× up to $2,500/month',s:['Use it at restaurants, cafés, bars, stand-alone grocers and for food delivery.','Check your first statement to confirm each store coded at 5×.','If you spend more than $2,500 a month on food, switch cards for the rest of that month.'],g:'Convenience stores are excluded. Superstores, pharmacies and warehouse clubs often earn 1×. Purchases from merchants outside Canada earn 1×.'},
+{id:'c4',tag:'Day 1',t:'Register for the Instacart credit',v:'Up to $60 a year',s:['Find the Instacart benefit in the Amex app or online account.','Register this card, then pay with it on instacart.ca or in the app.','Read how much is credited each month.'],g:'Runs until 31 Dec 2027. Orders charged after the month ends count toward the next month.'},
+{id:'c5',tag:'Day 1',t:'Pay streaming services directly with the card',v:'3× instead of 1×',s:['Check the provider list at americanexpress.ca/streaming.','Subscribe directly with the provider using the Cobalt.'],g:'Subscriptions billed through Apple, Google, Amazon, Rogers or Bell, or bundled with another service, earn only 1×.'},
+{id:'c6',tag:'Weekly',t:'Add Amex Offers before you shop',v:'Statement credits and bonus points',s:['Open the Amex app → Offers.','Add offers that match spending you already planned.'],g:'Offers are targeted and only count after you add them.'},
+{id:'c7',tag:'Before transferring',t:'Find award seats before moving points to Aeroplan',v:'1.5–3¢ a point',s:['Search aircanada.com/aeroplan for award availability.','Transfer the exact amount (1:1, usually within minutes).','Book straight away.'],g:'Transfers can\'t be reversed. Watch for Amex transfer bonuses to Marriott or Avios before moving points to those programs.'},
+{id:'c8',tag:'Every trip',t:'Charge flights and rentals to the card, and know the limits',v:'Unlocks travel insurance',s:['Charge the airline ticket in full to the Cobalt for delay and baggage cover.','For rental cars, decline the rental company\'s CDW and stay under the $85,000 MSRP and 48-day limits.','If you\'re 65+ or travelling more than 15 days, buy separate medical insurance.'],g:'There\'s no trip cancellation or interruption cover. Delay and baggage share a single $500 limit.'},
+{id:'c9',tag:'Abroad',t:'Leave the Cobalt at home outside Canada',v:'Avoid 2.5% FX',s:['Multipliers only apply to merchants in Canada.','Use a no-FX-fee card for foreign spending.'],g:'Abroad you earn 1× and pay a 2.5% fee, a net loss on every purchase.'},
+{id:'c10',tag:'Every month',t:'Pay the full statement balance',v:'Avoid 21.99%–29.99% interest',s:['Set up an automatic payment of the full balance.','Two missed payments raise your rate to 25.99%, three to 29.99%.'],g:'One month of interest wipes out a lot of 5× points.'},
+{id:'c11',tag:'Ongoing',t:'Add a partner card and refer friends',v:'Free extra cards, referral points',s:['Add a partner\'s card for free, so their food spending earns 5× too.','Share your referral link from the Amex app.'],g:'The partner\'s spending counts toward the same $2,500 monthly cap. Referral bonuses are capped at 225,000 points per calendar year.'}
+];
+var KEY='amex_cobalt_checks_v1';
+var saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+var list=$('list');
+items.forEach(function(it){
+  var d=document.createElement('details');
+  var steps=it.s.map(function(x){return '<li>'+x+'</li>'}).join('');
+  d.innerHTML='<summary><input type="checkbox" data-id="'+it.id+'" aria-label="Mark done: '+it.t+'"'+(saved[it.id]?' checked':'')+'><div class="tx"><b>'+it.t+'</b><span><span class="tag'+(it.hot?' hot':'')+'">'+it.tag+'</span>'+it.v+'</span></div></summary><div class="body"><ol>'+steps+'</ol><div class="gotcha"><b>Gotcha:</b> '+it.g+'</div></div>';
+  list.appendChild(d);
+});
+list.addEventListener('click',function(e){if(e.target.matches('input[type=checkbox]'))e.stopPropagation()});
+list.addEventListener('change',function(e){
+  var t=e.target;if(!t.dataset.id)return;
+  saved[t.dataset.id]=t.checked;
+  try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(x){}
+  prog();
+});
+function prog(){
+  var n=items.filter(function(i){return saved[i.id]}).length;
+  $('p_txt').textContent=n+' of '+items.length+' done';
+  $('p_bar').style.width=(n/items.length*100)+'%';
+}
+prog();run();
+})();
+</script>
+</body>
+</html>
