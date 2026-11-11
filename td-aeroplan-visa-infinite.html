@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TD Aeroplan Visa Infinite Maximizer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500&family=Inter:wght@400;500;600&display=swap">
+<style>
+:root{--bg:#FAF6EE;--card:#FFFFFF;--fg:#1A2B3C;--mut:#5B6877;--line:#E4DCCB;--accent:#00703C;--accent-fg:#fff;--ok:#1E7A4C;--warn:#A85F00;--bad:#B3261E;--chip:#EFE8D8;--shadow:0 1px 2px rgba(26,43,60,.06);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#5FD08B;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0F1B27;--card:#172636;--fg:#F3EEE2;--mut:#A9B4C0;--line:#2A3D50;--accent:#5FD08B;--accent-fg:#0F1B27;--ok:#5FD39A;--warn:#F0B35A;--bad:#FF8A80;--chip:#1F3145;--shadow:none;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.55 Inter,system-ui,sans-serif;padding-block:0 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.wrap{max-width:860px;margin:0 auto}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:500;text-wrap:balance;margin:0}
+h1{font-size:clamp(30px,6vw,46px);line-height:1.1}
+h2{font-size:clamp(22px,4vw,28px);margin-bottom:6px}
+h3{font-size:18px}
+header{padding:36px 0 20px}
+.lede{color:var(--mut);max-width:62ch;margin:12px 0 0}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--line);margin:0 calc(-1*max(16px,env(safe-area-inset-left,0px)));padding:8px max(16px,env(safe-area-inset-left,0px));display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+nav a{white-space:nowrap;font-size:13px;font-weight:500;color:var(--fg);text-decoration:none;background:var(--chip);padding:6px 12px;border-radius:99px}
+section{padding-top:36px;scroll-margin-top:56px}
+.sub{color:var(--mut);margin:0 0 16px;max-width:64ch}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:12px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.callout{background:var(--card);border-radius:8px;padding:12px 14px;margin:14px 0;border:1px solid var(--line);border-left:4px solid var(--warn)}
+.callout b{color:var(--warn)}
+.callout.ok{border-left-color:var(--ok)}.callout.ok b{color:var(--ok)}
+.callout.bad{border-left-color:var(--bad)}.callout.bad b{color:var(--bad)}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:10px 0;border-bottom:1px solid var(--line)}
+.row:last-child{border-bottom:0}
+.row .l{min-width:0;flex:1 1 200px}
+.row .l small{display:block;color:var(--mut);font-size:13px}
+label.t{display:flex;align-items:center;gap:8px;cursor:pointer;font-weight:500}
+input[type=checkbox]{width:20px;height:20px;accent-color:var(--accent);flex:none}
+input[type=number],select{font:inherit;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 9px;width:110px}
+input[type=range]{accent-color:var(--accent);width:150px}
+.big{font-family:Fraunces,serif;font-size:clamp(30px,7vw,46px);line-height:1}
+.res{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:14px}
+.res .card .k{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut)}
+.res .card small{display:block;color:var(--mut);font-size:13px;margin-top:6px}
+.pos{color:var(--ok)}.neg{color:var(--bad)}
+details{border:1px solid var(--line);border-radius:12px;background:var(--card);margin-bottom:10px}
+summary{cursor:pointer;padding:12px 14px;list-style:none;display:flex;gap:10px;align-items:flex-start}
+summary::-webkit-details-marker{display:none}
+summary .tx{flex:1;min-width:0}
+summary .tx b{display:block}
+summary .tx span{color:var(--mut);font-size:14px}
+summary::after{content:"+";color:var(--accent);font-size:22px;line-height:1}
+details[open] summary::after{content:"–"}
+.body{padding:0 14px 14px 44px}
+.body ol,.body ul{margin:6px 0;padding-left:20px}
+.body li{margin:4px 0}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:99px;background:var(--chip);color:var(--fg);margin-right:4px}
+.tag.hot{background:var(--warn);color:#fff}
+.gotcha{margin-top:8px;font-size:14px;color:var(--mut)}
+.gotcha b{color:var(--warn)}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:14px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mut)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.prog{height:8px;background:var(--chip);border-radius:99px;overflow:hidden;margin-top:6px}
+.prog i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+a{color:var(--accent)}
+ul.plain{padding-left:18px;margin:8px 0 0}
+ul.plain li{margin:4px 0}
+.src li{font-size:14px;margin:4px 0}
+footer{margin-top:44px;padding-top:20px;border-top:1px solid var(--line);color:var(--mut);font-size:14px}
+.switch{display:flex;justify-content:flex-end;padding-top:14px}
+.switch label{display:flex;flex-direction:column;gap:4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);font-weight:600}
+.switch select{font:500 14px/1.3 Inter,system-ui,sans-serif;letter-spacing:0;text-transform:none;color:var(--fg);background:var(--card);border:1px solid var(--line);border-radius:10px;padding:8px 10px;width:240px;max-width:100%;box-shadow:var(--shadow);cursor:pointer}
+@media(min-width:1420px){.switch{position:fixed;top:24px;right:24px;z-index:10;padding:0}}
+.hero{display:grid;gap:24px;grid-template-columns:1fr;align-items:center}
+@media(min-width:760px){.hero{grid-template-columns:1.4fr 1fr}}
+.hero img{display:block;width:100%;max-width:290px;height:auto;margin:0 auto;border-radius:12px;filter:drop-shadow(0 18px 28px rgba(26,43,60,.28))}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="switch"><label for="cardsel">Switch card<select id="cardsel" onchange="location.href=this.value">
+  <option value="index.html">Amex Platinum (Canada)</option>
+  <option value="amex-cobalt.html">Amex Cobalt</option>
+  <option value="scotiabank-gold-amex.html">Scotiabank Gold Amex</option>
+  <option value="td-aeroplan-visa-infinite.html" selected>TD Aeroplan Visa Infinite</option>
+  <option value="rogers-red-world-elite.html">Rogers Red World Elite Mastercard</option>
+  <option value="rbc-avion-visa-infinite.html">RBC Avion Visa Infinite</option>
+</select></label></div>
+<script>addEventListener('pageshow',function(){var s=document.getElementById('cardsel');s.value=s.querySelector('[selected]').value})</script>
+<header>
+  <div class="hero">
+  <div>
+  <h1>TD® Aeroplan® Visa Infinite* Card Maximizer</h1>
+  <p class="lede">A $139 card whose low earn rate (1–1.5 points per dollar) is offset by Air Canada perks: a <b>free first checked bag for you and up to 8 companions</b>, a NEXUS rebate, faster Aeroplan Elite status, and points that don't expire. Here's how to use the perks, what changed in Aeroplan's June 2026 award chart, and a calculator that counts the bag savings.</p>
+  </div>
+  <img src="td-aeroplan-visa-infinite-card.jpg" alt="The TD Aeroplan Visa Infinite card" width="255" height="160">
+  </div>
+</header>
+
+<nav>
+  <a href="#act">Checklist</a><a href="#earn">Earning</a><a href="#ac">Air Canada perks</a><a href="#redeem">Aeroplan 2026</a><a href="#perks">Other perks</a><a href="#ins">Insurance</a><a href="#fees">Fees</a><a href="#calc">Calculator</a>
+</nav>
+
+<section id="act">
+  <h2>1. Action checklist</h2>
+  <p class="sub">The welcome offer's steps first, then the perks. Ticks are saved in this browser only.</p>
+  <div class="card" style="margin-bottom:14px"><b id="p_txt">0 of 0 done</b><div class="prog"><i id="p_bar"></i></div></div>
+  <div id="list"></div>
+</section>
+
+<section id="earn">
+  <h2>2. How you earn Aeroplan points</h2>
+  <div class="card tbl"><table>
+    <tr><th>Purchase</th><th>Points per $1</th><th>Fine print</th></tr>
+    <tr><td><b>Groceries, gas, EV charging, and Air Canada</b> (including Air Canada Vacations), bought directly</td><td class="n"><b>1.5</b></td><td>On up to $80,000 a year combined, then 1×. Based on the merchant's Visa category code.</td></tr>
+    <tr><td>Everything else</td><td class="n">1</td><td>Includes dining, other travel and foreign purchases.</td></tr>
+    <tr><td>Aeroplan partners and the Aeroplan eStore</td><td class="n">+ partner points</td><td>Give your Aeroplan number and pay with the card to earn twice. 150+ partner brands and 200+ eStore retailers.</td></tr>
+  </table></div>
+  <div class="callout"><b>Honest read:</b> 1–1.5 points per dollar is low. The Cobalt earns 5× on food, for example. Most people keep this card for the Air Canada perks and the insurance, and earn points mainly through the welcome offer and partners.</div>
+  <p class="gotcha"><b>Points don't expire</b> while you hold the card in good standing. Aeroplan Family Sharing lets up to 8 family members pool their points.</p>
+</section>
+
+<section id="ac">
+  <h2>3. Air Canada perks</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Free first checked bag</h3><p style="margin:6px 0 0">For the primary cardholder, additional cardholders, and up to <b>8 companions on the same reservation</b>, up to 23 kg. Applies when the trip <b>starts on an Air Canada flight</b> (including Rouge and Air Canada Express), whether you paid cash or points.</p></div>
+    <div class="card"><h3>Faster Elite status</h3><p style="margin:6px 0 0">1,000 Status Qualifying Credits (SQC) for every $20,000 of spending, up to 25,000 SQC a year across all your Aeroplan credit cards. SQC count toward status only; you can't redeem them.</p></div>
+    <div class="card"><h3>NEXUS rebate</h3><p style="margin:6px 0 0">Up to $100 back on the NEXUS application fee once every 48 months, for the primary cardholder and additional cardholders.</p></div>
+    <div class="card"><h3>1.5× on Air Canada</h3><p style="margin:6px 0 0">Flights and Air Canada Vacations bought directly from Air Canada earn the bonus rate, on top of what you earn from the flight itself.</p></div>
+  </div>
+  <div class="callout ok"><b>What the bag is worth:</b> Air Canada charges for the first checked bag on most economy fares. A family of four checking one bag each on a return trip can save well over $200 on a single trip. Additional cardholders must link their Aeroplan numbers to get the benefit.</div>
+</section>
+
+<section id="redeem">
+  <h2>4. Redeeming Aeroplan points, after the June 2026 changes</h2>
+  <p class="sub">TD values Aeroplan points at 2¢ or more for most flight redemptions. You get that by booking flights, not by spending points on merchandise or gift cards.</p>
+  <div class="card tbl"><table>
+    <tr><th>What changed on 1 June 2026</th><th>Example</th></tr>
+    <tr><td>Partner award chart: around 32 prices went up and 9 came down</td><td>North America–Asia business on partners: 87,500 → 102,500 points one way</td></tr>
+    <tr><td>Premium partner cabins hit hardest</td><td>First class to Europe on Lufthansa or Swiss (4,001–6,000 mi): 100,000 → 120,000</td></tr>
+    <tr><td>Some short-haul and ultra-long-haul economy awards got cheaper</td><td>Up to 5,000 points less on some routes</td></tr>
+    <tr><td>Price locks when you book</td><td>Awards ticketed before a change keep the old price</td></tr>
+  </table></div>
+  <div class="callout"><b>Practical rules.</b> Air Canada flights use dynamic pricing, so check the points price against the cash fare before you book. Partner awards (Star Alliance) use the fixed chart, and partner business class is where you get 2¢+ a point. Avoid merchandise and gift cards, which are usually worth under 1¢.</div>
+  <p class="gotcha"><b>Source note:</b> the chart changes are summarized from Milesopedia and Upgraded Points. Check the current chart on aircanada.com before you plan a big redemption.</p>
+</section>
+
+<section id="perks">
+  <h2>5. Other linked perks</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Avis Preferred Plus</h3><p style="margin:6px 0 0">Free upgrade to Avis Preferred Plus status: one-class car upgrades, faster pickup and a dedicated counter.</p></div>
+    <div class="card"><h3>World of Hyatt</h3><p style="margin:6px 0 0">1 World of Hyatt bonus point per $1 at participating Hyatt hotels. You have to link your Aeroplan and Hyatt accounts.</p></div>
+    <div class="card"><h3>Uber One</h3><p style="margin:6px 0 0">A free 6-month Uber One trial for eligible TD cardholders, then 20% off. Set a reminder before it renews.</p></div>
+    <div class="card"><h3>Starbucks</h3><p style="margin:6px 0 0">Link the card in the Starbucks app to earn extra Stars at participating stores.</p></div>
+  </div>
+  <p class="gotcha"><b>Not included:</b> no Maple Leaf Lounge access, priority boarding or companion pass. Those come with the $599 TD Aeroplan Visa Infinite Privilege.</p>
+</section>
+
+<section id="ins">
+  <h2>6. Insurance cheat sheet</h2>
+  <p class="sub">Strong for the price. Trip and baggage cover generally require paying at least 75% of the ticket with the card. Limits below are from TD's product page.</p>
+  <div class="card tbl"><table>
+    <tr><th>Coverage</th><th>Limit</th><th>Catch</th></tr>
+    <tr><td>Travel medical</td><td class="n">$2,000,000</td><td><b>21 days</b> per trip under 65. <b>4 days</b> if you or your spouse is 65+. Top-up cover is available.</td></tr>
+    <tr><td>Trip cancellation</td><td class="n">$1,500/person, $5,000 total</td><td>Excess over any other insurance or refunds.</td></tr>
+    <tr><td>Trip interruption</td><td class="n">$5,000/person, $25,000 total</td><td>Same trip.</td></tr>
+    <tr><td>Flight/trip delay (4+ hours)</td><td class="n">$500 per person</td><td>Hotel, meals and essentials.</td></tr>
+    <tr><td>Delayed (6+ hours) or lost baggage</td><td class="n">$1,000 per person</td><td>Essentials such as clothing and toiletries.</td></tr>
+    <tr><td>Common carrier travel accident</td><td class="n">$500,000</td><td>Bus, ferry, plane or train.</td></tr>
+    <tr><td>Auto rental collision/loss</td><td>Up to 48 consecutive days</td><td>Decline the rental company's CDW. Check the certificate for vehicle exclusions.</td></tr>
+    <tr><td>Hotel/motel burglary</td><td class="n">$2,500 per occurrence</td><td>Includes family members travelling with you.</td></tr>
+    <tr><td>Mobile device</td><td class="n">$1,000</td><td>Loss, theft, accidental damage or breakdown.</td></tr>
+    <tr><td>Purchase security and extended warranty</td><td>90 days, warranty doubled (up to +12 months)</td><td>For new items.</td></tr>
+  </table></div>
+  <div class="callout"><b>Reality check:</b> 21 days of medical cover is good for most holidays, but travellers 65+ (or with a spouse 65+) get only 4 days. Buy top-up cover (TD Insurance: 1-866-374-1129) before a longer trip.</div>
+</section>
+
+<section id="fees">
+  <h2>7. Fees and rates</h2>
+  <div class="card tbl"><table>
+    <tr><th>Item</th><th>Amount</th></tr>
+    <tr><td>Annual fee</td><td class="n">$139 (first year rebated under the current offer; rebated every year with a TD All-Inclusive Banking Plan)</td></tr>
+    <tr><td>Additional cards</td><td class="n">$75 each</td></tr>
+    <tr><td>Income requirement</td><td class="n">$60,000 personal or $100,000 household</td></tr>
+    <tr><td>Purchase interest</td><td class="n">21.99%</td></tr>
+    <tr><td>Cash advances</td><td class="n">22.99%</td></tr>
+    <tr><td>Foreign currency conversion</td><td class="n">2.5% (per third-party sources)</td></tr>
+  </table></div>
+  <p class="gotcha"><b>Abroad:</b> you earn 1 point and pay about 2.5% in FX fees, a loss even at 2¢ a point. Use a no-FX card for foreign spending, and keep this one for booking Air Canada flights.</p>
+</section>
+
+<section id="calc">
+  <h2>8. Is it worth $139 to you?</h2>
+  <p class="sub">Enter your yearly spending and the checked-bag fees the card would save you. The calculator compares it with a no-fee card paying 1% cash back.</p>
+  <div class="card">
+    <div class="row"><div class="l">Annual fee rebated<small>First year under the current offer, or every year with a TD All-Inclusive Banking Plan</small></div><label class="t"><input type="checkbox" id="waive"> Yes</label></div>
+    <div class="row"><div class="l">Additional cards<small>$75 each</small></div><input type="number" id="addl" min="0" max="9" value="0" style="width:70px"></div>
+    <div class="row"><div class="l">Groceries, gas, EV charging, Air Canada ($/yr)<small>1.5×, up to $80,000</small></div><input type="number" id="s_bonus" min="0" value="12000"></div>
+    <div class="row"><div class="l">Everything else in Canada ($/yr)<small>1×</small></div><input type="number" id="s_other" min="0" value="12000"></div>
+    <div class="row"><div class="l">Foreign-currency spending ($/yr, in CAD)<small>1×, 2.5% FX</small></div><input type="number" id="s_fx" min="0" value="0"></div>
+    <div class="row"><div class="l">Air Canada bag fees you'd otherwise pay ($/yr)<small>For example 4 people × 2 flights × $35 = $280. Only count trips that start on Air Canada.</small></div>$<input type="number" id="v_bags" min="0" value="140" style="width:90px"></div>
+    <div class="row"><div class="l">NEXUS rebate<small>$100 every 4 years = $25/yr, only if you'd apply anyway</small></div><label class="t"><input type="checkbox" id="nexus"> Count it</label></div>
+    <div class="row"><div class="l">How you'll redeem (¢ per point)<small>About 1 = merchandise. 1.5–2 = Air Canada economy. 2.5+ = partner business class.</small></div><div><input type="range" id="cpp" min="0.8" max="3" step="0.1" value="1.8"> <b id="o_cpp">1.8</b>¢</div></div>
+    <div class="row"><div class="l">Include the welcome offer?<small>Up to 50,000 points, one time (10,000 first purchase, 15,000 after $3,000 in 90 days, 25,000 after $12,000 in 12 months)</small></div><label class="t"><input type="checkbox" id="w_on"> Include</label></div>
+  </div>
+
+  <div class="res" aria-live="polite">
+    <div class="card"><div class="k">Net value per year</div><div class="big" id="r_net">–</div><small id="r_net_d"></small></div>
+    <div class="card"><div class="k">Aeroplan points</div><div class="big" id="r_pts">–</div><small id="r_pts_d"></small></div>
+    <div class="card"><div class="k">vs a no-fee 1% card</div><div class="big" id="r_vs">–</div><small id="r_vs_d"></small></div>
+    <div class="card"><div class="k">Break-even redemption</div><div class="big" id="r_be">–</div><small>¢ per point needed to match the 1% card</small></div>
+  </div>
+  <div class="callout" id="verdict"></div>
+  <p class="gotcha"><b>How it's calculated:</b> net value = points × your redemption value + bag fees saved + NEXUS − fees − 2.5% FX. Spending in the 1.5× categories above $80,000 earns 1×. The 25,000-point part of the welcome offer is only counted if total spending is at least $12,000. The 1% card is assumed to charge the same FX fee.</p>
+</section>
+
+<section id="note">
+  <div class="callout"><b>Verify before you act.</b> TD's welcome offer has no published end date and "may be changed, withdrawn or extended at any time." Aeroplan award prices change too. Check the live terms on td.com and aircanada.com.</div>
+  <h3 style="margin-top:20px">Sources</h3>
+  <ul class="src">
+    <li><a href="https://www.td.com/ca/en/personal-banking/products/credit-cards/aeroplan/aeroplan-visa-infinite-card" target="_blank" rel="noopener">TD: Aeroplan Visa Infinite Card product page and legal terms</a></li>
+    <li><a href="https://www.td.com/content/dam/tdct/document/pdf/personal-banking/credit-cards/welcome-guide/aeroplaninfinite-bcg-en.pdf" target="_blank" rel="noopener">TD: Aeroplan Visa Infinite Benefit Coverages Guide (PDF)</a></li>
+    <li><a href="https://milesopedia.com/en/news/programs/aeroplan-devaluation-2026-all-award-chart-changes/" target="_blank" rel="noopener">Milesopedia: Aeroplan devaluation 2026, all award chart changes</a></li>
+    <li><a href="https://upgradedpoints.com/news/air-canada-aeroplan-award-charts-june-2026/" target="_blank" rel="noopener">Upgraded Points: Aeroplan 2026 award chart changes</a></li>
+    <li><a href="https://cardpoints.ca/cards/td-aeroplan-vi/" target="_blank" rel="noopener">Cardpoints: TD Aeroplan Visa Infinite earn rates, limits and fees</a></li>
+    <li><a href="https://pointcrunch.ca/cards/td-aeroplan-visa-infinite/" target="_blank" rel="noopener">PointCrunch: TD Aeroplan Visa Infinite offer history</a></li>
+  </ul>
+</section>
+
+<footer>Travel rich. Spend smart. · Independent guide, not affiliated with TD Bank, Air Canada, Aeroplan or Visa. Not financial advice.</footer>
+</div>
+
+<script>
+//<calc>
+function calcTD(i){
+  var fee=(i.waive?0:139)+75*(i.addl||0);
+  var b=i.bonus||0,b15=Math.min(b,80000),b1=Math.max(0,b-80000);
+  var pts=b15*1.5+b1+(i.other||0)+(i.fx||0);
+  var spend=b+(i.other||0)+(i.fx||0);
+  var welcome=0;
+  if(i.welcome){welcome=10000+(spend>=3000?15000:0)+(spend>=12000?25000:0);}
+  var val=(pts+welcome)*(i.cpp||0)/100;
+  var perks=(i.bags||0)+(i.nexus?25:0);
+  var fxCost=(i.fx||0)*0.025;
+  var net=val+perks-fee-fxCost;
+  var bench=spend*0.01-fxCost;
+  var be=(pts+welcome)>0?(spend*0.01+fee-perks)/(pts+welcome)*100:0;
+  return {fee:fee,pts:pts,welcome:welcome,val:val,perks:perks,fxCost:fxCost,net:net,bench:bench,vs:net-bench,breakeven:Math.max(0,be),spend:spend,overCap:b>80000};
+}
+//</calc>
+(function(){
+var $=function(id){return document.getElementById(id)};
+var money=function(n){var s=Math.round(Math.abs(n)).toLocaleString('en-CA');return (n<0?'−$':'$')+s};
+function num(id){var v=parseFloat($(id).value);return isFinite(v)&&v>=0?v:0}
+function run(){
+  $('o_cpp').textContent=(+$('cpp').value).toFixed(1);
+  var r=calcTD({waive:$('waive').checked,addl:num('addl'),bonus:num('s_bonus'),other:num('s_other'),fx:num('s_fx'),bags:num('v_bags'),nexus:$('nexus').checked,cpp:+$('cpp').value,welcome:$('w_on').checked});
+  $('r_net').textContent=money(r.net);$('r_net').className='big '+(r.net>=0?'pos':'neg');
+  $('r_net_d').textContent=money(r.val)+' points + '+money(r.perks)+' perks − '+money(r.fee)+' fees'+(r.fxCost?' − '+money(r.fxCost)+' FX':'');
+  $('r_pts').textContent=Math.round(r.pts+r.welcome).toLocaleString('en-CA');
+  $('r_pts_d').textContent=r.welcome?Math.round(r.pts).toLocaleString('en-CA')+' from spending + '+r.welcome.toLocaleString('en-CA')+' welcome':'From spending, per year';
+  $('r_vs').textContent=(r.vs>=0?'+':'')+money(r.vs);$('r_vs').className='big '+(r.vs>=0?'pos':'neg');
+  $('r_vs_d').textContent='The 1% card would return '+money(r.bench);
+  $('r_be').textContent=r.breakeven.toFixed(2)+'¢';
+  var v=$('verdict'),msg,cls='callout';
+  if(r.vs>=1){cls+=' ok';msg='<b>The TD Aeroplan wins by '+money(r.vs)+' a year.</b> '+(r.perks>0?'The checked-bag savings do a lot of the work. ':'')+'Keep redeeming for flights: below '+r.breakeven.toFixed(2)+'¢ a point, the 1% card would do better.';}
+  else{cls+=' bad';msg='<b>A no-fee 1% card beats this by '+money(-r.vs)+' a year.</b> Without regular Air Canada trips (for the bag benefit) or redemptions of at least '+r.breakeven.toFixed(2)+'¢ a point, the $139 fee isn\'t covered.';}
+  if(r.overCap)msg+=' <br><br>You\'re over the $80,000 annual cap on 1.5× purchases. Spending above it earns 1×.';
+  if(num('s_fx')>0)msg+=' <br><br>You\'re paying '+money(r.fxCost)+' in FX fees. A no-FX card would save most of that.';
+  if($('w_on').checked)msg+=' <br><br>This includes the one-time welcome offer. Untick it to see a normal year.';
+  v.className=cls;v.innerHTML=msg;
+}
+document.querySelectorAll('#calc input').forEach(function(e){e.addEventListener('input',run);e.addEventListener('change',run)});
+
+var items=[
+{id:'t1',tag:'First 3 months',hot:1,t:'Activate the card and make a purchase',v:'10,000 points and the first-year fee rebate',s:['Activate the card as soon as it arrives.','Make your first purchase within 3 months of opening the account.'],g:'Both the 10,000 points and the first-year fee rebate depend on it. The offer has no published end date and can change at any time.'},
+{id:'t2',tag:'First 90 days',hot:1,t:'Spend $3,000 within 90 days',v:'15,000 points',s:['That\'s about $1,000 a month.','Put groceries, gas and recurring bills on the card.'],g:'The 90 days count from account opening, not from when the card arrives.'},
+{id:'t3',tag:'First 12 months',hot:1,t:'Reach $12,000 and keep the account open 12 months',v:'25,000-point anniversary bonus',s:['Track your total from the account-opening date.','Keep the card open past the first anniversary. The bonus is paid then, so the year-2 fee will apply unless rebated.'],g:'Aeroplan can revoke welcome bonuses if it suspects abuse, such as repeatedly opening and closing cards.'},
+{id:'t4',tag:'Day 1',t:'Link Aeroplan numbers for everyone on the account',v:'Unlocks the bag benefit',s:['Make sure the primary cardholder\'s Aeroplan number is on the account.','Additional cardholders must link their own Aeroplan numbers to get Air Canada benefits.'],g:'Without a linked Aeroplan number, the free bag may not apply at check-in.'},
+{id:'t5',tag:'Every trip',t:'Use the free first checked bag on Air Canada',v:'Saves bag fees for up to 9 people',s:['Book everyone on the same reservation with the cardholder.','Add the cardholder\'s Aeroplan number to the booking.','The trip must start on a flight operated by Air Canada, Rouge or Air Canada Express.'],g:'Trips that start on a partner airline (United, Lufthansa and others) don\'t qualify. The bag limit is 23 kg.'},
+{id:'t6',tag:'Day 1',t:'Make it your grocery, gas and Air Canada card',v:'1.5 points per $',s:['Use it for groceries, gas, EV charging, and flights booked directly with Air Canada.','Check unusual merchants with TD if you\'re not sure how they\'re coded.'],g:'The bonus rate stops after $80,000 a year in those categories.'},
+{id:'t7',tag:'Ongoing',t:'Earn twice at Aeroplan partners and the eStore',v:'Extra points at no cost',s:['Give your Aeroplan number at partner brands and pay with the card.','Start online shopping from the Aeroplan eStore.'],g:'Partner earn rates vary. Check the offer before you buy.'},
+{id:'t8',tag:'Once every 4 years',t:'Claim the NEXUS application fee rebate',v:'Up to $100',s:['Pay the NEXUS application fee with this card.','The rebate posts to your statement; additional cardholders qualify too.'],g:'It\'s once every 48 months per eligible cardholder.'},
+{id:'t9',tag:'Day 1',t:'Link Hyatt, Starbucks and Uber One',v:'Extra points and savings',s:['Link Aeroplan with World of Hyatt for 1 bonus point per $1.','Link the card in the Starbucks app for extra Stars.','Start the 6-month Uber One trial, and set a reminder before it renews.'],g:'Uber One renews at the regular price (20% off) after the trial.'},
+{id:'t10',tag:'Before booking',t:'Compare the points price with the cash fare',v:'Aim for 2¢+ a point',s:['Divide the cash fare (minus taxes you\'d pay anyway) by the points required.','Below about 1.5¢, pay cash and save your points.','Partner business class on Star Alliance airlines usually gives the best value.'],g:'The partner chart went up on 1 June 2026 for many premium routes. The price locks when you ticket.'},
+{id:'t11',tag:'Long trips',t:'Buy top-up medical for trips past 21 days (4 if 65+)',v:'Avoid a coverage gap',s:['Count the days, including departure and return.','Call TD Insurance (1-866-374-1129) for top-up cover.'],g:'If you or your spouse is 65+, the card covers only the first 4 days.'},
+{id:'t12',tag:'Ongoing',t:'Pool points with Aeroplan Family Sharing',v:'Book awards sooner',s:['Set up Family Sharing on aircanada.com (up to 8 members).','Pool everyone\'s points for one booking.'],g:'Each member can only be in one family pool at a time.'}
+];
+var KEY='td_aeroplan_vi_checks_v1';
+var saved={};
+try{saved=JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){saved={}}
+var list=$('list');
+items.forEach(function(it){
+  var d=document.createElement('details');
+  var steps=it.s.map(function(x){return '<li>'+x+'</li>'}).join('');
+  d.innerHTML='<summary><input type="checkbox" data-id="'+it.id+'" aria-label="Mark done: '+it.t+'"'+(saved[it.id]?' checked':'')+'><div class="tx"><b>'+it.t+'</b><span><span class="tag'+(it.hot?' hot':'')+'">'+it.tag+'</span>'+it.v+'</span></div></summary><div class="body"><ol>'+steps+'</ol><div class="gotcha"><b>Gotcha:</b> '+it.g+'</div></div>';
+  list.appendChild(d);
+});
+list.addEventListener('click',function(e){if(e.target.matches('input[type=checkbox]'))e.stopPropagation()});
+list.addEventListener('change',function(e){
+  var t=e.target;if(!t.dataset.id)return;
+  saved[t.dataset.id]=t.checked;
+  try{localStorage.setItem(KEY,JSON.stringify(saved))}catch(x){}
+  prog();
+});
+function prog(){
+  var n=items.filter(function(i){return saved[i.id]}).length;
+  $('p_txt').textContent=n+' of '+items.length+' done';
+  $('p_bar').style.width=(n/items.length*100)+'%';
+}
+prog();run();
+})();
+</script>
+</body>
+</html>
